@@ -80,3 +80,17 @@ C:\Software_projects\Elbit\ElbitMalat\Code_test_yard\TLM\RT_Viewer\RT_Viewer_1_0
 C:\Software_projects\Elbit\ElbitMalat\Code_test_yard\TLM\RT_Viewer\RT_Viewer_1_004\RTI Viewer\obj\x86\Debug\RT_Viewer.csproj.CoreCompileInputs.cache
 C:\Software_projects\Elbit\ElbitMalat\Code_test_yard\TLM\RT_Viewer\RT_Viewer_1_004\RTI Viewer\obj\x86\Debug\RT Viewer.exe
 C:\Software_projects\Elbit\ElbitMalat\Code_test_yard\TLM\RT_Viewer\RT_Viewer_1_004\RTI Viewer\obj\x86\Debug\RT Viewer.pdb
+C:\SoftwareProjects\Work\Elbit_telemetric\Host_RT_Viewer\RTI Viewer\obj\x86\Debug\RT Viewer.exe
+C:\SoftwareProjects\Work\Elbit_telemetric\Host_RT_Viewer\RTI Viewer\obj\x86\Debug\RT Viewer.pdb
+C:\SoftwareProjects\Work\Elbit_telemetric\Host_RT_Viewer\RTI Viewer\obj\x86\Debug\RT_Viewer.csprojResolveAssemblyReference.cache
+C:\SoftwareProjects\Work\Elbit_telemetric\Host_RT_Viewer\RTI Viewer\obj\x86\Debug\RT Viewer.g.resources
+C:\SoftwareProjects\Work\Elbit_telemetric\Host_RT_Viewer\RTI Viewer\obj\x86\Debug\RT_Viewer.Forms.AboutForm.resources
+C:\SoftwareProjects\Work\Elbit_telemetric\Host_RT_Viewer\RTI Viewer\obj\x86\Debug\RT_Viewer.Forms.GenericTextBoxForm.resources
+C:\SoftwareProjects\Work\Elbit_telemetric\Host_RT_Viewer\RTI Viewer\obj\x86\Debug\RT_Viewer.Forms.LoggerShellForm.resources
+C:\SoftwareProjects\Work\Elbit_telemetric\Host_RT_Viewer\RTI Viewer\obj\x86\Debug\RT_Viewer.Forms.SettingsForm.resources
+C:\SoftwareProjects\Work\Elbit_telemetric\Host_RT_Viewer\RTI Viewer\obj\x86\Debug\RT_Viewer.Forms.TesterForm.resources
+C:\SoftwareProjects\Work\Elbit_telemetric\Host_RT_Viewer\RTI Viewer\obj\x86\Debug\RT_Viewer.RTViewerForm.resources
+C:\SoftwareProjects\Work\Elbit_telemetric\Host_RT_Viewer\RTI Viewer\obj\x86\Debug\RT_Viewer.Properties.Resources.resources
+C:\SoftwareProjects\Work\Elbit_telemetric\Host_RT_Viewer\RTI Viewer\obj\x86\Debug\RT_Viewer.csproj.GenerateResource.Cache
+C:\SoftwareProjects\Work\Elbit_telemetric\Host_RT_Viewer\RTI Viewer\bin\Debug\RT Viewer.exe
+C:\SoftwareProjects\Work\Elbit_telemetric\Host_RT_Viewer\RTI Viewer\bin\Debug\RT Viewer.pdb

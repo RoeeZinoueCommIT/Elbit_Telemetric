@@ -56,6 +56,7 @@ void p_VTU_tlm_read_flash(void)
 	unsigned char	data[C_TLM_MAX_DATA_BYTE_IN_PARAM];
 	unsigned char	flags[C_TLM_NUM_FLAGS_BYTES];
 
+
 	unsigned short	data_type = 0x0, read_bytes = 0x0, data_bytes = 0x0, param_idx = 0x0, visual = 0x0;
 	bool			flah_store = false;
 	unsigned int	members_cnt = 0;
@@ -66,6 +67,9 @@ void p_VTU_tlm_read_flash(void)
 
 
 	p_read_array = p_TLM_get_flash_data();
+
+
+
 	memcpy(members, p_read_array + C_TLM_FLASH_MAX_DATA_BYTES, sizeof(members));
 	
 	if ((int)members[0] > 0)
@@ -142,6 +146,8 @@ void p_VTU_tlm_read_current(void)
 	unsigned char	data[C_TLM_MAX_DATA_BYTE_IN_PARAM];
 	unsigned char	flags[C_TLM_NUM_FLAGS_BYTES];
 
+	unsigned char	data_file[C_TLM_CURRENT_MAX_DATA_BYTES + C_TLM_PACKET_HEADER_BYTES];
+
 	unsigned short	data_type = 0x0, read_bytes = 0x0, data_bytes = 0x0, param_idx = 0x0, visual = 0x0;
 	bool			flah_store = false;
 	unsigned int	members_cnt = 0;
@@ -150,8 +156,15 @@ void p_VTU_tlm_read_current(void)
 	int				temp_int;
 	float			temp_float;
 
-
 	p_read_array = p_TLM_get_current_data();
+
+	/* Write raw data files */
+	memcpy(data_file, p_read_array, C_TLM_CURRENT_MAX_DATA_BYTES + C_TLM_PACKET_HEADER_BYTES);
+	FILE* file = fopen("test.txt", "a");
+	fwrite(data_file, 1, C_TLM_CURRENT_MAX_DATA_BYTES + C_TLM_PACKET_HEADER_BYTES, file);
+	fprintf(file, "\n");
+	fclose(file);
+
 	memcpy(members, p_read_array + C_TLM_CURRENT_MAX_DATA_BYTES, sizeof(members));
 
 	if ((int)members[0] > 0)

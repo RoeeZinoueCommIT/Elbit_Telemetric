@@ -438,7 +438,6 @@ namespace RT_Viewer
             this.tlm_tabPage = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.label14 = new System.Windows.Forms.Label();
             this.tlm_rdb_VisualModeFigure = new System.Windows.Forms.RadioButton();
             this.tlm_rdb_VisualModeTable = new System.Windows.Forms.RadioButton();
             this.tlm_btn_SaveConfigurations = new System.Windows.Forms.Button();
@@ -463,7 +462,6 @@ namespace RT_Viewer
             this.tlm_rdb_SortLowHigh = new System.Windows.Forms.RadioButton();
             this.tlm_rdb_SortHighLow = new System.Windows.Forms.RadioButton();
             this.tlm_rdb_SortByGroups = new System.Windows.Forms.RadioButton();
-            this.label17 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label22 = new System.Windows.Forms.Label();
             this.tlm_tbx_LoadFilePath = new System.Windows.Forms.TextBox();
@@ -549,6 +547,9 @@ namespace RT_Viewer
             this.dNLTableBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.dNLTableBindingSource4 = new System.Windows.Forms.BindingSource(this.components);
             this.Tlm_openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.tlm_tbx_PathConfigFilesFolder = new System.Windows.Forms.TextBox();
             this.uplTable_groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uplTable_dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uPLTableBindingSource)).BeginInit();
@@ -715,6 +716,7 @@ namespace RT_Viewer
             ((System.ComponentModel.ISupportInitialize)(this.mGCIPConfigurationTableDBBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dNLTableBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dNLTableBindingSource4)).BeginInit();
+            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
             // 
             // pause_button
@@ -4729,6 +4731,7 @@ namespace RT_Viewer
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.Controls.Add(this.groupBox9);
             this.groupBox1.Controls.Add(this.groupBox7);
             this.groupBox1.Controls.Add(this.tlm_btn_SaveConfigurations);
             this.groupBox1.Controls.Add(this.groupBox6);
@@ -4746,24 +4749,14 @@ namespace RT_Viewer
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.label14);
             this.groupBox7.Controls.Add(this.tlm_rdb_VisualModeFigure);
             this.groupBox7.Controls.Add(this.tlm_rdb_VisualModeTable);
-            this.groupBox7.Location = new System.Drawing.Point(9, 345);
+            this.groupBox7.Location = new System.Drawing.Point(6, 309);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(282, 60);
+            this.groupBox7.Size = new System.Drawing.Size(282, 47);
             this.groupBox7.TabIndex = 14;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Visual mode";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 27);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(34, 13);
-            this.label14.TabIndex = 7;
-            this.label14.Text = "Mode";
             // 
             // tlm_rdb_VisualModeFigure
             // 
@@ -4789,7 +4782,7 @@ namespace RT_Viewer
             // 
             // tlm_btn_SaveConfigurations
             // 
-            this.tlm_btn_SaveConfigurations.Location = new System.Drawing.Point(72, 411);
+            this.tlm_btn_SaveConfigurations.Location = new System.Drawing.Point(69, 460);
             this.tlm_btn_SaveConfigurations.Name = "tlm_btn_SaveConfigurations";
             this.tlm_btn_SaveConfigurations.Size = new System.Drawing.Size(129, 27);
             this.tlm_btn_SaveConfigurations.TabIndex = 14;
@@ -4802,7 +4795,7 @@ namespace RT_Viewer
             this.groupBox6.Controls.Add(this.label18);
             this.groupBox6.Controls.Add(this.tlm_rdb_DataTypeOrginal);
             this.groupBox6.Controls.Add(this.tlm_rdb_DataTypeChars);
-            this.groupBox6.Location = new System.Drawing.Point(9, 279);
+            this.groupBox6.Location = new System.Drawing.Point(6, 243);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(282, 60);
             this.groupBox6.TabIndex = 13;
@@ -4848,16 +4841,16 @@ namespace RT_Viewer
             this.groupBox4.Controls.Add(this.label21);
             this.groupBox4.Controls.Add(this.tlm_tbx_FindName);
             this.groupBox4.Controls.Add(this.label20);
-            this.groupBox4.Location = new System.Drawing.Point(6, 444);
+            this.groupBox4.Location = new System.Drawing.Point(0, 493);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(282, 124);
+            this.groupBox4.Size = new System.Drawing.Size(282, 87);
             this.groupBox4.TabIndex = 8;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Find data member";
             // 
             // tlm_btn_FigureDataMember
             // 
-            this.tlm_btn_FigureDataMember.Location = new System.Drawing.Point(158, 91);
+            this.tlm_btn_FigureDataMember.Location = new System.Drawing.Point(170, 19);
             this.tlm_btn_FigureDataMember.Name = "tlm_btn_FigureDataMember";
             this.tlm_btn_FigureDataMember.Size = new System.Drawing.Size(106, 27);
             this.tlm_btn_FigureDataMember.TabIndex = 17;
@@ -4867,7 +4860,7 @@ namespace RT_Viewer
             // 
             // tlm_btn_SelectDataMember
             // 
-            this.tlm_btn_SelectDataMember.Location = new System.Drawing.Point(12, 91);
+            this.tlm_btn_SelectDataMember.Location = new System.Drawing.Point(170, 53);
             this.tlm_btn_SelectDataMember.Name = "tlm_btn_SelectDataMember";
             this.tlm_btn_SelectDataMember.Size = new System.Drawing.Size(106, 27);
             this.tlm_btn_SelectDataMember.TabIndex = 16;
@@ -4878,7 +4871,7 @@ namespace RT_Viewer
             // tlm_tbx_FindGroup
             // 
             this.tlm_tbx_FindGroup.FormattingEnabled = true;
-            this.tlm_tbx_FindGroup.Location = new System.Drawing.Point(116, 50);
+            this.tlm_tbx_FindGroup.Location = new System.Drawing.Point(66, 46);
             this.tlm_tbx_FindGroup.Name = "tlm_tbx_FindGroup";
             this.tlm_tbx_FindGroup.Size = new System.Drawing.Size(89, 21);
             this.tlm_tbx_FindGroup.TabIndex = 8;
@@ -4895,7 +4888,7 @@ namespace RT_Viewer
             // 
             // tlm_tbx_FindName
             // 
-            this.tlm_tbx_FindName.Location = new System.Drawing.Point(116, 23);
+            this.tlm_tbx_FindName.Location = new System.Drawing.Point(66, 19);
             this.tlm_tbx_FindName.Name = "tlm_tbx_FindName";
             this.tlm_tbx_FindName.Size = new System.Drawing.Size(89, 20);
             this.tlm_tbx_FindName.TabIndex = 6;
@@ -4918,7 +4911,7 @@ namespace RT_Viewer
             this.groupBox5.Controls.Add(this.tlm_tbx_SaveFilePath);
             this.groupBox5.Location = new System.Drawing.Point(9, 113);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(282, 90);
+            this.groupBox5.Size = new System.Drawing.Size(282, 68);
             this.groupBox5.TabIndex = 11;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "File save configuration";
@@ -4939,9 +4932,9 @@ namespace RT_Viewer
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(6, 42);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(72, 13);
+            this.label16.Size = new System.Drawing.Size(29, 13);
             this.label16.TabIndex = 11;
-            this.label16.Text = "Store location";
+            this.label16.Text = "Path";
             // 
             // tlm_rdb_SaveFileYes
             // 
@@ -4965,9 +4958,9 @@ namespace RT_Viewer
             // 
             // tlm_tbx_SaveFilePath
             // 
-            this.tlm_tbx_SaveFilePath.Location = new System.Drawing.Point(76, 58);
+            this.tlm_tbx_SaveFilePath.Location = new System.Drawing.Point(42, 39);
             this.tlm_tbx_SaveFilePath.Name = "tlm_tbx_SaveFilePath";
-            this.tlm_tbx_SaveFilePath.Size = new System.Drawing.Size(200, 20);
+            this.tlm_tbx_SaveFilePath.Size = new System.Drawing.Size(234, 20);
             this.tlm_tbx_SaveFilePath.TabIndex = 10;
             // 
             // groupBox3
@@ -4975,10 +4968,9 @@ namespace RT_Viewer
             this.groupBox3.Controls.Add(this.tlm_rdb_SortLowHigh);
             this.groupBox3.Controls.Add(this.tlm_rdb_SortHighLow);
             this.groupBox3.Controls.Add(this.tlm_rdb_SortByGroups);
-            this.groupBox3.Controls.Add(this.label17);
-            this.groupBox3.Location = new System.Drawing.Point(9, 209);
+            this.groupBox3.Location = new System.Drawing.Point(6, 187);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(282, 64);
+            this.groupBox3.Size = new System.Drawing.Size(282, 50);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Sort data mode";
@@ -4986,7 +4978,7 @@ namespace RT_Viewer
             // tlm_rdb_SortLowHigh
             // 
             this.tlm_rdb_SortLowHigh.AutoSize = true;
-            this.tlm_rdb_SortLowHigh.Location = new System.Drawing.Point(199, 41);
+            this.tlm_rdb_SortLowHigh.Location = new System.Drawing.Point(196, 26);
             this.tlm_rdb_SortLowHigh.Name = "tlm_rdb_SortLowHigh";
             this.tlm_rdb_SortLowHigh.Size = new System.Drawing.Size(80, 17);
             this.tlm_rdb_SortLowHigh.TabIndex = 15;
@@ -4997,7 +4989,7 @@ namespace RT_Viewer
             // tlm_rdb_SortHighLow
             // 
             this.tlm_rdb_SortHighLow.AutoSize = true;
-            this.tlm_rdb_SortHighLow.Location = new System.Drawing.Point(115, 41);
+            this.tlm_rdb_SortHighLow.Location = new System.Drawing.Point(116, 24);
             this.tlm_rdb_SortHighLow.Name = "tlm_rdb_SortHighLow";
             this.tlm_rdb_SortHighLow.Size = new System.Drawing.Size(78, 17);
             this.tlm_rdb_SortHighLow.TabIndex = 14;
@@ -5008,22 +5000,13 @@ namespace RT_Viewer
             // tlm_rdb_SortByGroups
             // 
             this.tlm_rdb_SortByGroups.AutoSize = true;
-            this.tlm_rdb_SortByGroups.Location = new System.Drawing.Point(37, 41);
+            this.tlm_rdb_SortByGroups.Location = new System.Drawing.Point(42, 24);
             this.tlm_rdb_SortByGroups.Name = "tlm_rdb_SortByGroups";
             this.tlm_rdb_SortByGroups.Size = new System.Drawing.Size(72, 17);
             this.tlm_rdb_SortByGroups.TabIndex = 13;
             this.tlm_rdb_SortByGroups.TabStop = true;
             this.tlm_rdb_SortByGroups.Text = "By groups";
             this.tlm_rdb_SortByGroups.UseVisualStyleBackColor = true;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(6, 26);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(34, 13);
-            this.label17.TabIndex = 6;
-            this.label17.Text = "Mode";
             // 
             // groupBox2
             // 
@@ -5243,13 +5226,15 @@ namespace RT_Viewer
             this.tlm_chart_view.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.tlm_chart_view.Legends.Add(legend1);
-            this.tlm_chart_view.Location = new System.Drawing.Point(81, 43);
+            this.tlm_chart_view.Location = new System.Drawing.Point(27, 19);
             this.tlm_chart_view.Name = "tlm_chart_view";
             series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsValueShownAsLabel = true;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.tlm_chart_view.Series.Add(series1);
-            this.tlm_chart_view.Size = new System.Drawing.Size(528, 374);
+            this.tlm_chart_view.Size = new System.Drawing.Size(738, 489);
             this.tlm_chart_view.TabIndex = 0;
             this.tlm_chart_view.Text = "chart1";
             // 
@@ -5712,7 +5697,7 @@ namespace RT_Viewer
             this.menuToolStripMenuItem});
             this.menu_menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menu_menuStrip.Name = "menu_menuStrip";
-            this.menu_menuStrip.Size = new System.Drawing.Size(1276, 24);
+            this.menu_menuStrip.Size = new System.Drawing.Size(1271, 24);
             this.menu_menuStrip.TabIndex = 15;
             this.menu_menuStrip.Text = "menuStrip1";
             this.menu_menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -5776,6 +5761,33 @@ namespace RT_Viewer
             // dNLTableBindingSource4
             // 
             this.dNLTableBindingSource4.DataSource = typeof(RT_Viewer.Framework.UAVModule.DNLTable);
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.label14);
+            this.groupBox9.Controls.Add(this.tlm_tbx_PathConfigFilesFolder);
+            this.groupBox9.Location = new System.Drawing.Point(3, 362);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(282, 47);
+            this.groupBox9.TabIndex = 15;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Configuration files folder";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(3, 22);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(29, 13);
+            this.label14.TabIndex = 13;
+            this.label14.Text = "Path";
+            // 
+            // tlm_tbx_PathConfigFilesFolder
+            // 
+            this.tlm_tbx_PathConfigFilesFolder.Location = new System.Drawing.Point(39, 19);
+            this.tlm_tbx_PathConfigFilesFolder.Name = "tlm_tbx_PathConfigFilesFolder";
+            this.tlm_tbx_PathConfigFilesFolder.Size = new System.Drawing.Size(234, 20);
+            this.tlm_tbx_PathConfigFilesFolder.TabIndex = 12;
             // 
             // RTViewerForm
             // 
@@ -6004,6 +6016,8 @@ namespace RT_Viewer
             ((System.ComponentModel.ISupportInitialize)(this.mGCIPConfigurationTableDBBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dNLTableBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dNLTableBindingSource4)).EndInit();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -6491,7 +6505,6 @@ namespace RT_Viewer
         private Label label20;
         private GroupBox groupBox3;
         private Label label18;
-        private Label label17;
         private GroupBox groupBox2;
         private RadioButton tlm_rdb_SaveFileNo;
         private RadioButton tlm_rdb_SaveFileYes;
@@ -6510,7 +6523,6 @@ namespace RT_Viewer
         private RadioButton tlm_rdb_DataTypeOrginal;
         private RadioButton tlm_rdb_DataTypeChars;
         private GroupBox groupBox7;
-        private Label label14;
         private RadioButton tlm_rdb_VisualModeFigure;
         private RadioButton tlm_rdb_VisualModeTable;
         private Label label22;
@@ -6533,6 +6545,9 @@ namespace RT_Viewer
         private GroupBox tlm_gbx_view_figure;
         private System.Windows.Forms.DataVisualization.Charting.Chart tlm_chart_view;
         private Button tlm_btn_FigureDataMember;
+        private GroupBox groupBox9;
+        private Label label14;
+        private TextBox tlm_tbx_PathConfigFilesFolder;
     }
 }
 

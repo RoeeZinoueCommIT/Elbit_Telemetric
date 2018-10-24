@@ -17,7 +17,7 @@ namespace RT_Viewer.Framework
 
         public static class TLMModuleOptions
         {
-            public enum enumTLM_opt : Int16
+            public enum enumTLM_opt : int
             {
                 TLM_OPT_NOT_SELECTED,
 
@@ -46,7 +46,7 @@ namespace RT_Viewer.Framework
             };
         }
 
-        enum enumTLM_bit_field_type : Int16
+        enum enumTLM_bit_field_type : int
         {
             /* First configuration byte */
 
@@ -87,7 +87,7 @@ namespace RT_Viewer.Framework
             TLM_BIT_FIELD_C_DATA_BYTE_LEN = 0x4,
         };
 
-        enum enumTLM_group_type : Int16
+        enum enumTLM_group_type : int
         {
             TLM_GROUP_NA = 0,
             TLM_GROUP_PFD,
@@ -96,7 +96,7 @@ namespace RT_Viewer.Framework
             TLM_GROUP_LAST_GROUP,
         };
 
-        enum enumTLM_data_type : Int16
+        enum enumTLM_data_type : int
         {
             TLM_DATA_INT1_INT8 = 0,         /* char range: 0 - 255 */
             TLM_DATA_INT16,                 /* int range: 0 -:- 65,535 */
@@ -105,13 +105,13 @@ namespace RT_Viewer.Framework
             TLM_DATA_FLOAT_DOUBLE,          /* Float range: 6 decimal places, Double range: 15 decimal places */
         };
 
-        enum enumTLM_data_sign : Int16
+        enum enumTLM_data_sign : int
         {
             TLM_DATA_UNSIGN = 0,
             TLM_DATA_SIGN,
         };
 
-        enum enumTLM_opt_idx : Int16
+        enum enumTLM_opt_idx : int
         {
             TLM_OPT_IDX_READ_SOURCE_IDX = 0,
             TLM_OPT_IDX_SAVE_FILE_IDX,
@@ -156,6 +156,10 @@ namespace RT_Viewer.Framework
         List<TLMDataTable> _tlm_db;
         List<TLMNamesTable> _tlm_db_names;
 
+        public List<double> tlm_x_chart { get; set; }
+        public List<double> tlm_y_chart { get; set; }
+                    
+
         #endregion
 
         #region C`tor
@@ -176,6 +180,8 @@ namespace RT_Viewer.Framework
             BL_TLMDataTable = new BindingList<TLMDataTable>();
             _tlm_db = new List<TLMDataTable>();
 
+            tlm_x_chart = new List<double>();
+            tlm_y_chart = new List<double>();
         }
 
         #endregion
@@ -238,33 +244,16 @@ namespace RT_Viewer.Framework
 
             UInt16 key = (UInt16)((1 - 1) * MAX_ALLOWED_PARAMS_IN_GROUP + 2);
 
-            var table = new DataTable();
-            table.Columns.Add("Age", typeof(double));
-            table.Columns.Add("Name", typeof(string));
-            table.Rows.Add(17, "Mark");
-            table.Rows.Add(13, "Simon");
-            table.Rows.Add(16, "Matt");
-            table.Rows.Add(14, "Jeff");
-            table.Rows.Add(16, "Mary");
-
-            LineSeries lineSeria = new LineSeries();
-            chart1.Series.Add(lineSeria);
-
-            lineSeria.ValueMember = "Age";
-            lineSeria.CategoryMember = "Name";
-            lineSeria.DataSource = table;
-
-            /* Plot 2D figure from data */
             foreach (var member in _tlm_db)
             {
-                if(member.param_key == key)
+                if (member.param_key == key)
                 {
 
                 }
             }
 
             /* Return data table */
-            return (table);
+            return (null);
         }
 
         #endregion
@@ -284,14 +273,19 @@ namespace RT_Viewer.Framework
         private void TlmUpdateTable(byte[] msg, uint size, uint type, uint source)
         {
             Int32 read_bytes = 0x0;
-            UInt32 num_params = msg[msg.Length - 2];
+            UInt32 num_params = 0x0;
 
             try
             {
-                for (int idx = 0; idx < msg.Length - 2; idx++)
+                num_params = msg[msg.Length - 2];
+                if(num_params > 3)
                 {
-                    read_bytes = Prepere_read_packet(msg, read_bytes);
+                    for (int idx = 0; idx < num_params; idx++)
+                    {
+                        read_bytes = Prepere_read_packet(msg, read_bytes);
+                    }
                 }
+                
             }
             catch (Exception)
             {
@@ -333,7 +327,7 @@ namespace RT_Viewer.Framework
             
 
             temp_group = p_TLM_get_data(xi_flags[0], enumTLM_bit_field_type.TLM_BIT_FIELD_A_GROUP_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_A_GROUP_LEN);
-            temp_param_idx = p_TLM_get_data(xi_flags[0], enumTLM_bit_field_type.TLM_BIT_FIELD_B_PARAM_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_B_PARAM_LEN);
+            temp_param_idx = p_TLM_get_data(xi_flags[1], enumTLM_bit_field_type.TLM_BIT_FIELD_B_PARAM_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_B_PARAM_LEN);
             temp_type = p_TLM_get_data(xi_flags[1], enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_TYPE_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_TYPE_LEN);
             temp_rate = p_TLM_get_data(xi_flags[1], enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_TYPE_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_TYPE_LEN).ToString();
 
@@ -346,7 +340,7 @@ namespace RT_Viewer.Framework
                 value = System.Text.Encoding.Default.GetString(xi_data),
                 rate = "E",
                 Data_type = temp_type.ToString(),
-                param_key = (UInt16)((temp_group - 1) * MAX_ALLOWED_PARAMS_IN_GROUP + temp_param_idx)
+                param_key = (UInt16)(temp_group * MAX_ALLOWED_PARAMS_IN_GROUP + temp_param_idx)
             };
             
             _tlm_db.Add(_node);
@@ -445,5 +439,24 @@ namespace RT_Viewer.Framework
 
         #endregion
 
+        internal void UpdateChartLists()
+        {
+            UInt16 MAX_ALLOWED_PARAMS_IN_GROUP = 5; /* Need to be part of the header */
+            UInt16 key = 0x5;
+
+            tlm_x_chart.Clear();
+            tlm_y_chart.Clear();
+
+            double count_t = 0.3;
+            double t_count = 0x0;
+            foreach (var member in _tlm_db)
+            {
+                if (member.param_key == key)
+                {
+                    tlm_x_chart.Add(count_t * (1 + t_count++));
+                    tlm_y_chart.Add(Convert.ToDouble(member.value));
+                }
+            }
+        }
     }
 }

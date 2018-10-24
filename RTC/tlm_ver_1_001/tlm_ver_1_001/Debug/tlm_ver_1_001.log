@@ -1,53 +1,18 @@
-﻿Build started 10/24/2018 10:17:43 PM.
-     1>Project "C:\SoftwareProjects\Work\Telemetric\RTC\tlm_ver_1_001\tlm_ver_1_001\tlm_ver_1_001.vcxproj" on node 2 (Build target(s)).
+﻿Build started 10/24/2018 11:28:51 PM.
+     1>Project "C:\SoftwareProjects\Work\Elbit_telemetric\RTC\tlm_ver_1_001\tlm_ver_1_001\tlm_ver_1_001.vcxproj" on node 2 (Build target(s)).
      1>C:\Program Files\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(381,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (tlm_ver_1_001.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
-         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\tlm.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
-         stdafx.cpp
-         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\tlm.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt APP_main.cpp HKY_framer.cpp OS_framer.cpp PFD_framer.cpp TLM_db_hky.cpp TLM_db_pfd.cpp TLM_framer.cpp Tlm_manage_params.cpp VTU_framer.cpp
+         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\tlm.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt VTU_framer.cpp
          VTU_framer.cpp
-     1>c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\vtu_framer.cpp(12): warning C4627: '#include <conio.h>': skipped when looking for precompiled header use
+     1>c:\softwareprojects\work\elbit_telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\vtu_framer.cpp(12): warning C4627: '#include <conio.h>': skipped when looking for precompiled header use
                  Add directive to 'stdafx.h' or rebuild precompiled header
-     1>c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\vtu_framer.cpp(1): warning C4603: 'VTU_FRAMER_C' : macro is not defined or definition is different after precompiled header use
+     1>c:\softwareprojects\work\elbit_telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\vtu_framer.cpp(1): warning C4603: 'VTU_FRAMER_C' : macro is not defined or definition is different after precompiled header use
                  Add macro to precompiled header instead of defining here
-                 c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\vtu_framer.cpp(14) : use of precompiled header
-     1>c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\vtu_framer.cpp(94): warning C4800: 'unsigned short' : forcing value to bool 'true' or 'false' (performance warning)
-     1>c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\vtu_framer.cpp(180): warning C4800: 'unsigned short' : forcing value to bool 'true' or 'false' (performance warning)
-         Tlm_manage_params.cpp
-     1>c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\tlm_manage_params.cpp(1): warning C4603: 'TLM_MANAGE_PARAMS_C' : macro is not defined or definition is different after precompiled header use
-                 Add macro to precompiled header instead of defining here
-                 c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\tlm_manage_params.cpp(12) : use of precompiled header
-         TLM_framer.cpp
-     1>c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\tlm_framer.cpp(1): warning C4603: 'TLM_FRAMER_C' : macro is not defined or definition is different after precompiled header use
-                 Add macro to precompiled header instead of defining here
-                 c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\tlm_framer.cpp(12) : use of precompiled header
-     1>c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\tlm_framer.cpp(189): warning C4101: 'rotation' : unreferenced local variable
-         TLM_db_pfd.cpp
-     1>c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\tlm_db_pfd.cpp(1): warning C4603: 'TLM_DB_PFD_C' : macro is not defined or definition is different after precompiled header use
-                 Add macro to precompiled header instead of defining here
-                 c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\tlm_db_pfd.cpp(12) : use of precompiled header
-         TLM_db_hky.cpp
-     1>c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\tlm_db_hky.cpp(1): warning C4603: 'TLM_DB_HKY_C' : macro is not defined or definition is different after precompiled header use
-                 Add macro to precompiled header instead of defining here
-                 c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\tlm_db_hky.cpp(12) : use of precompiled header
-         PFD_framer.cpp
-     1>c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\pfd_framer.cpp(1): warning C4603: 'PFD_FRAMER_C' : macro is not defined or definition is different after precompiled header use
-                 Add macro to precompiled header instead of defining here
-                 c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\pfd_framer.cpp(12) : use of precompiled header
-     1>c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\pfd_framer.cpp(52): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\pfd_framer.cpp(68): warning C4305: '+=' : truncation from 'double' to 'float'
-         OS_framer.cpp
-         HKY_framer.cpp
-     1>c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\hky_framer.cpp(1): warning C4603: 'HKY_FRAMER_C' : macro is not defined or definition is different after precompiled header use
-                 Add macro to precompiled header instead of defining here
-                 c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\hky_framer.cpp(12) : use of precompiled header
-         APP_main.cpp
-     1>c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\app_main.cpp(1): warning C4603: 'APP_FRAMER_C' : macro is not defined or definition is different after precompiled header use
-                 Add macro to precompiled header instead of defining here
-                 c:\softwareprojects\work\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\app_main.cpp(12) : use of precompiled header
-         Generating Code...
+                 c:\softwareprojects\work\elbit_telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\vtu_framer.cpp(14) : use of precompiled header
+     1>c:\softwareprojects\work\elbit_telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\vtu_framer.cpp(98): warning C4800: 'unsigned short' : forcing value to bool 'true' or 'false' (performance warning)
+     1>c:\softwareprojects\work\elbit_telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\vtu_framer.cpp(193): warning C4800: 'unsigned short' : forcing value to bool 'true' or 'false' (performance warning)
        Link:
-         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\SoftwareProjects\Work\Telemetric\RTC\tlm_ver_1_001\Debug\tlm.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\SoftwareProjects\Work\Telemetric\RTC\tlm_ver_1_001\Debug\tlm.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\SoftwareProjects\Work\Telemetric\RTC\tlm_ver_1_001\Debug\tlm.lib" /MACHINE:X86 Debug\APP_main.obj
+         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\SoftwareProjects\Work\Elbit_telemetric\RTC\tlm_ver_1_001\Debug\tlm.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\SoftwareProjects\Work\Elbit_telemetric\RTC\tlm_ver_1_001\Debug\tlm.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\SoftwareProjects\Work\Elbit_telemetric\RTC\tlm_ver_1_001\Debug\tlm.lib" /MACHINE:X86 Debug\APP_main.obj
          Debug\HKY_framer.obj
          Debug\OS_framer.obj
          Debug\PFD_framer.obj
@@ -57,9 +22,9 @@
          Debug\TLM_framer.obj
          Debug\Tlm_manage_params.obj
          Debug\VTU_framer.obj
-         tlm_ver_1_001.vcxproj -> C:\SoftwareProjects\Work\Telemetric\RTC\tlm_ver_1_001\Debug\tlm.exe
-     1>Done Building Project "C:\SoftwareProjects\Work\Telemetric\RTC\tlm_ver_1_001\tlm_ver_1_001\tlm_ver_1_001.vcxproj" (Build target(s)).
+         tlm_ver_1_001.vcxproj -> C:\SoftwareProjects\Work\Elbit_telemetric\RTC\tlm_ver_1_001\Debug\tlm.exe
+     1>Done Building Project "C:\SoftwareProjects\Work\Elbit_telemetric\RTC\tlm_ver_1_001\tlm_ver_1_001\tlm_ver_1_001.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.73
+Time Elapsed 00:00:00.62

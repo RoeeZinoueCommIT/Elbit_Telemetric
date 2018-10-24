@@ -3550,6 +3550,7 @@ namespace RT_Viewer
                 tlm_rdb_VisualModeTable.Checked == true ?   TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_VISUAL_TABLE :
                                                             TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_VISUAL_FIGURE
             );
+
         }
 
         private void tlm_btn_SelectDataMember_Click(object sender, EventArgs e)
@@ -3588,20 +3589,12 @@ namespace RT_Viewer
         private void tlm_btn_FigureDataMember_Click(object sender, EventArgs e)
         {
             DataTable dataTalbe = socketRT1.tlmModule.SelectDataMember(tlm_tbx_FindName.Text, tlm_tbx_FindGroup.SelectedText);
-            tlm_chart_view.Series.Add(dataTalbe);
 
-
-            ArrayList listDataSource = G
-
-            // Populate the list with records. 
-            listDataSource.Add(new Record(1, "Jane", 19));
-            listDataSource.Add(new Record(2, "Joe", 30));
-            listDataSource.Add(new Record(3, "Bill", 15));
-            listDataSource.Add(new Record(4, "Michael", 42));
+            /* Update TLM DB chart lists */
+            socketRT1.tlmModule.UpdateChartLists();
 
             // Bind the chart to the list. 
-            tlm_chart_view.DataSource = listDataSource;
-
+            tlm_chart_view.Series[0].Points.DataBindXY(socketRT1.tlmModule.tlm_x_chart, socketRT1.tlmModule.tlm_y_chart);
         }
     }
 }
