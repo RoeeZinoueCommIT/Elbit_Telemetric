@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E6F971F7-6C17-499E-8FF2-554D981A04F7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RT_Viewer</RootNamespace>
+    <AssemblyName>RT Viewer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>RTViewer.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GenericTextBoxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GenericTextBoxForm.Designer.cs">
+      <DependentUpon>GenericTextBoxForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LoggerShellForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LoggerShellForm.Designer.cs">
+      <DependentUpon>LoggerShellForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TesterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TesterForm.Designer.cs">
+      <DependentUpon>TesterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\FRMModule.cs" />
+    <Compile Include="Framework\GDTModule.cs" />
+    <Compile Include="Framework\HKYModule.cs" />
+    <Compile Include="Framework\IRDModule.cs" />
+    <Compile Include="Framework\MGCModule.cs" />
+    <Compile Include="Framework\NTPModule.cs" />
+    <Compile Include="Framework\NVMModule.cs" />
+    <Compile Include="Framework\OffllineParamsModule.cs" />
+    <Compile Include="Framework\PFDMoudle.cs" />
+    <Compile Include="Framework\SettingsHandler.cs" />
+    <Compile Include="Framework\STKModule.cs" />
+    <Compile Include="Framework\TLMModule.cs" />
+    <Compile Include="RTViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RTViewerForm.Designer.cs">
+      <DependentUpon>RTViewerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\APPModule.cs" />
+    <Compile Include="Framework\HSTModule.cs" />
+    <Compile Include="Framework\IModule.cs" />
+    <Compile Include="Framework\LOGModule.cs" />
+    <Compile Include="Framework\RTIModule.cs" />
+    <Compile Include="Framework\SocketHandler.cs" />
+    <Compile Include="Framework\UAVModule.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GenericTextBoxForm.resx">
+      <DependentUpon>GenericTextBoxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoggerShellForm.resx">
+      <DependentUpon>LoggerShellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TesterForm.resx">
+      <DependentUpon>TesterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RTViewerForm.resx">
+      <DependentUpon>RTViewerForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\DataSources\RTViewerForm.ConsPermissionTemp.datasource" />
+    <None Include="Properties\DataSources\RTViewerForm.DNLTable.datasource" />
+    <None Include="Properties\DataSources\RTViewerForm.LOPTable.datasource" />
+    <None Include="Properties\DataSources\RT_Viewer.Framework.FRMModule+FRMTable.datasource" />
+    <None Include="Properties\DataSources\RT_Viewer.Framework.FRMModule+PFLTable.datasource" />
+    <None Include="Properties\DataSources\RT_Viewer.Framework.LOGModule+LevelOfReport.datasource" />
+    <None Include="Properties\DataSources\RT_Viewer.Framework.LOGModule+LogLevelTable.datasource" />
+    <None Include="Properties\DataSources\RT_Viewer.Framework.MGCModule+HSTGruConfTableDB.datasource" />
+    <None Include="Properties\DataSources\RT_Viewer.Framework.MGCModule+MGCIPConfDb.datasource" />
+    <None Include="Properties\DataSources\RT_Viewer.Framework.MGCModule+MGCIPConfigurationTableDB.datasource" />
+    <None Include="Properties\DataSources\RT_Viewer.Framework.RTIModule+LOPTable.datasource" />
+    <None Include="Properties\DataSources\RT_Viewer.Framework.RTIModule+RTEntry.datasource" />
+    <None Include="Properties\DataSources\RT_Viewer.Framework.RTIModule+UPLTable.datasource" />
+    <None Include="Properties\DataSources\RT_Viewer.Framework.RTIModule.datasource" />
+    <None Include="Properties\DataSources\RT_Viewer.Framework.STKModule+STKTaxiTable.datasource" />
+    <None Include="Properties\DataSources\RT_Viewer.Framework.TLMModule+TLMDataTable.datasource" />
+    <None Include="Properties\DataSources\RT_Viewer.Framework.UAVModule+DNLTable.datasource" />
+    <None Include="Properties\DataSources\RT_Viewer.Framework.UAVModule.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="RTCLogger\RtcLogger.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo5-5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo5-51.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logist.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logist1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LogoOrg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\greedLed.jpg" />
+    <None Include="Resources\redLed.png" />
+    <None Include="Resources\yellowLed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\ElbitLogo.png" />
+    <None Include="Resources\pressed_key.bmp" />
+    <None Include="Resources\logist2.jpg" />
+    <None Include="Resources\ElbitLogo1.png" />
+    <Content Include="RTViewer.ico" />
+    <None Include="Resources\loadingPicture.bmp" />
+    <None Include="Resources\loading.gif" />
+    <None Include="Resources\loading2.gif" />
+    <None Include="Resources\Loading_icon.gif" />
+    <None Include="Resources\loading1.gif" />
+    <None Include="Resources\loading5.gif" />
+    <None Include="Resources\FlickLed.bmp" />
+    <None Include="Resources\flickLed.gif" />
+    <None Include="Resources\offLed.png" />
+    <None Include="Resources\onLed.png" />
+    <None Include="Resources\Error.png" />
+    <None Include="Resources\pressed_button.png" />
+    <Content Include="Resources\RT.ico" />
+    <None Include="Resources\unpressed_button.png" />
+    <None Include="Resources\RTViewer.ico" />
+    <Content Include="RTCLogger\Readme.txt" />
+    <Resource Include="RTCLogger\RtcLogger.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

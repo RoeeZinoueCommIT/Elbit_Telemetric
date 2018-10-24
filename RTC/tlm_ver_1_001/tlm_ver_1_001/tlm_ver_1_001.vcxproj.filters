@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="OS">
+      <UniqueIdentifier>{47f9253c-ddcf-4f86-a8c1-353370dd0824}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OS\Source">
+      <UniqueIdentifier>{f20cec0d-43ec-49f4-999f-6df922af653a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OS\Header">
+      <UniqueIdentifier>{45ee27ca-56e8-4006-8753-614afab91179}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="APP">
+      <UniqueIdentifier>{6bf1dcab-f2ef-4580-a43e-6db9b697be7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="APP\Source">
+      <UniqueIdentifier>{4837b567-f738-46c1-a692-3763d1c6c949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="APP\Header">
+      <UniqueIdentifier>{8a4d29ea-2111-4abd-83de-e3252bdbaf35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VTU">
+      <UniqueIdentifier>{0f1744ee-32fe-4d9a-a24a-2d7b8dbff192}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VTU\Source">
+      <UniqueIdentifier>{4c0667ef-1263-4f3a-9d74-bcd6864a029d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VTU\Header">
+      <UniqueIdentifier>{bf5a40bf-39ea-4c73-9e12-17720f00c71a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PFD">
+      <UniqueIdentifier>{8adb6c69-ca98-4ac3-9367-d5197ae94d4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PFD\Source">
+      <UniqueIdentifier>{1847b0b6-08a8-4f20-8fb2-774620914b22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PFD\Header">
+      <UniqueIdentifier>{844b883d-b9d5-410a-a528-41cddded2270}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TLM">
+      <UniqueIdentifier>{1f43f98a-1124-4fcf-b892-d34cf01d2fee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TLM\Data">
+      <UniqueIdentifier>{8577aa96-7e51-4773-a8e0-494f0048300b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TLM\Header">
+      <UniqueIdentifier>{51cf3863-57ae-4aab-8cc0-dce8a69a766c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TLM\Source">
+      <UniqueIdentifier>{b96faadf-f07d-42b1-8210-54fed4057e74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TLM\Data\TLM_PFD_db">
+      <UniqueIdentifier>{a590d318-7971-4a07-9d63-e70d4f656771}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TLM\Data\TLM_HKY_db">
+      <UniqueIdentifier>{b96076f8-ee5e-4327-a858-7e106ac0ba90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HKY">
+      <UniqueIdentifier>{8c704193-6b88-46ca-a84e-5b295d336348}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HKY\Source">
+      <UniqueIdentifier>{6764f040-26e6-4d26-afdc-485a4c996039}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HKY\Header">
+      <UniqueIdentifier>{f775a2ec-4f21-4f01-9bd7-db99e6171001}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="targetver.h">
+      <Filter>OS\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>OS\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="VTU_framer.h">
+      <Filter>VTU\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="PFD_framer.h">
+      <Filter>PFD\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="OS_framer.h">
+      <Filter>OS\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="TLM_config.h">
+      <Filter>TLM\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="TLM_framer.h">
+      <Filter>TLM\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Tlm_manage_params.h">
+      <Filter>TLM\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="TLM_db_pfd.h">
+      <Filter>TLM\Data\TLM_PFD_db</Filter>
+    </ClInclude>
+    <ClInclude Include="TLM_db_hky.h">
+      <Filter>TLM\Data\TLM_HKY_db</Filter>
+    </ClInclude>
+    <ClInclude Include="HKY_framer.h">
+      <Filter>HKY\Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>OS\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="APP_main.cpp">
+      <Filter>APP\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="VTU_framer.cpp">
+      <Filter>VTU\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PFD_framer.cpp">
+      <Filter>PFD\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="OS_framer.cpp">
+      <Filter>OS\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="TLM_framer.cpp">
+      <Filter>TLM\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Tlm_manage_params.cpp">
+      <Filter>TLM\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="TLM_db_pfd.cpp">
+      <Filter>TLM\Data\TLM_PFD_db</Filter>
+    </ClCompile>
+    <ClCompile Include="TLM_db_hky.cpp">
+      <Filter>TLM\Data\TLM_HKY_db</Filter>
+    </ClCompile>
+    <ClCompile Include="HKY_framer.cpp">
+      <Filter>HKY\Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
