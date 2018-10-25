@@ -117,7 +117,6 @@ namespace RT_Viewer.Framework
             TLM_OPT_IDX_SAVE_FILE_IDX,
             TLM_OPT_IDX_SORT_MODE_IDX,
             TLM_OPT_IDX_DATA_TYPE_IDX,
-            TLM_OPT_IDX_VISUAL_MODE_IDX
         };
 
         #endregion
@@ -158,7 +157,9 @@ namespace RT_Viewer.Framework
 
         public List<double> tlm_x_chart { get; set; }
         public List<double> tlm_y_chart { get; set; }
-                    
+
+        public List<string> tlm_group_list { get; set; }
+
 
         #endregion
 
@@ -182,6 +183,8 @@ namespace RT_Viewer.Framework
 
             tlm_x_chart = new List<double>();
             tlm_y_chart = new List<double>();
+
+            tlm_group_list = new List<string>();
         }
 
         #endregion
@@ -194,11 +197,8 @@ namespace RT_Viewer.Framework
         (
             TLMModuleOptions.enumTLM_opt read_source,
             string read_source_file_path,
-            TLMModuleOptions.enumTLM_opt save_file,
-            string store_files_location,
             TLMModuleOptions.enumTLM_opt sort_mode,
-            TLMModuleOptions.enumTLM_opt data_type,
-            TLMModuleOptions.enumTLM_opt visual_mode
+            TLMModuleOptions.enumTLM_opt data_type
         )
         {
 
@@ -208,52 +208,49 @@ namespace RT_Viewer.Framework
                 _readFileSourcePath = read_source_file_path == string.Empty ? string.Empty : _readFileSourcePath;
             }
 
-            _tlmOptions[(Int16)enumTLM_opt_idx.TLM_OPT_IDX_SAVE_FILE_IDX] = save_file;
-            if (save_file == TLMModuleOptions.enumTLM_opt.TLM_OPT_SAVE_FILE_YES)
-            {
-                if(store_files_location != string.Empty)
-                {
-                    _storeRawFilesPath = store_files_location;
-                    _storeRawFilesPath += string.Format(@"\tlm_info_{0}.txt", DateTime.Now.ToString("MM/dd/yyyy").Replace('/','_'));
-
-                    if (File.Exists(_storeRawFilesPath))
-                    {
-                        File.Delete(_storeRawFilesPath);
-                    }
-                }
-                else
-                {
-                    _storeRawFilesPath = string.Empty;
-                }
-            }
-
             _tlmOptions[(Int16)enumTLM_opt_idx.TLM_OPT_IDX_SORT_MODE_IDX] = sort_mode;
 
             _tlmOptions[(Int16)enumTLM_opt_idx.TLM_OPT_IDX_DATA_TYPE_IDX] = data_type;
-
-            _tlmOptions[(Int16)enumTLM_opt_idx.TLM_OPT_IDX_VISUAL_MODE_IDX] = visual_mode;
         }
 
         #endregion
 
         #region Find data member
 
-        internal DataTable SelectDataMember(string text, string selectedText)
+        internal Int32 SelectDataMember(string xi_find_name, string xi_find_group)
         {
             UInt16 MAX_ALLOWED_PARAMS_IN_GROUP = 5; /* Need to be part of the header */
+            UInt16 param_index = 0x0;
 
-            UInt16 key = (UInt16)((1 - 1) * MAX_ALLOWED_PARAMS_IN_GROUP + 2);
+            Int32 ret_code = 0x0;
 
-            foreach (var member in _tlm_db)
+            if(xi_find_name != string.Empty)
             {
-                if (member.param_key == key)
-                {
+                /* check if name is param index */
+                if (true == xi_find_name.All(char.IsDigit)) param_index = Convert.ToUInt16(xi_find_name);
 
-                }
+                ret_code = (UInt16)(tlm_fromStringToEnumVal(xi_find_group) * MAX_ALLOWED_PARAMS_IN_GROUP + param_index);
+            }
+            else
+            {
+                ret_code = -1;
+            }
+            
+            /* Return data table */
+            return (ret_code);
+        }
+
+        private ushort tlm_fromStringToEnumVal(string xi_find_group)
+        {
+            UInt16 cnt = 0x0;
+
+            foreach (var mc in Enum.GetNames(typeof(enumTLM_group_type)))
+            {
+                if (mc == xi_find_group) break;
+                cnt++;
             }
 
-            /* Return data table */
-            return (null);
+            return (cnt);
         }
 
         #endregion
@@ -265,7 +262,10 @@ namespace RT_Viewer.Framework
             TlmUpdateTable(msg, size, type, source);
             TlmStoreData(msg, size, type, source);
 
+
+            BL_TLMDataTable.Clear();
             BL_TLMDataTable = new BindingList<TLMDataTable>(_tlm_db);
+            
             DoInvoke(new IModuleEventArgs(this.deviceIdConnected));
             return true;
         }
@@ -287,11 +287,16 @@ namespace RT_Viewer.Framework
                 }
                 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
 
+            /* Sort TLM DB table if needed */
+            if(_tlmOptions[(Int16)enumTLM_opt_idx.TLM_OPT_IDX_SORT_MODE_IDX] == TLMModuleOptions.enumTLM_opt.TLM_OPT_SORT_HIGH_LOW)
+            {
+                var newlist = _tlm_db.OrderBy(x => x.group);
+            }
         }
 
         private Int32 Prepere_read_packet(byte[] msg, Int32 read_bytes)
@@ -307,7 +312,14 @@ namespace RT_Viewer.Framework
             /* Copy data */
             data_size = p_TLM_get_data(flags[2], enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_BYTE_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_BYTE_LEN);
             data = new byte[data_size];
-            Buffer.BlockCopy(msg, read_bytes + 3, data, 0, data_size);
+            if((read_bytes + 3 + data_size) < msg.Length)
+            {
+                Buffer.BlockCopy(msg, read_bytes + 3, data, 0, data_size);
+            }
+            else
+            {
+                return 0;
+            }
 
             /* Pharsing new packet */
             InsertNewLinkToDataList(flags, data, data_size);
@@ -320,13 +332,14 @@ namespace RT_Viewer.Framework
         {
             UInt16 MAX_ALLOWED_PARAMS_IN_GROUP = 5; /* Need to be part of the header */
 
-            UInt16 temp_group = 0x0;
-            UInt16 temp_param_idx = 0x0;
+            string temp_group_str = string.Empty;
+            UInt16 temp_param_idx = 0x0, temp_group_int = 0x0;
             UInt16 temp_type = 0x0;
             string temp_rate = string.Empty;
-            
 
-            temp_group = p_TLM_get_data(xi_flags[0], enumTLM_bit_field_type.TLM_BIT_FIELD_A_GROUP_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_A_GROUP_LEN);
+
+            temp_group_int = p_TLM_get_data(xi_flags[0], enumTLM_bit_field_type.TLM_BIT_FIELD_A_GROUP_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_A_GROUP_LEN);
+            temp_group_str = ((enumTLM_group_type)temp_group_int).ToString();
             temp_param_idx = p_TLM_get_data(xi_flags[1], enumTLM_bit_field_type.TLM_BIT_FIELD_B_PARAM_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_B_PARAM_LEN);
             temp_type = p_TLM_get_data(xi_flags[1], enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_TYPE_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_TYPE_LEN);
             temp_rate = p_TLM_get_data(xi_flags[1], enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_TYPE_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_TYPE_LEN).ToString();
@@ -335,15 +348,21 @@ namespace RT_Viewer.Framework
             var _node = new TLMDataTable
             {
                 name = "A",
-                group = ((enumTLM_group_type)temp_group).ToString(),
+                group = temp_group_str,
                 idx = temp_param_idx.ToString(),
                 value = System.Text.Encoding.Default.GetString(xi_data),
                 rate = "E",
                 Data_type = temp_type.ToString(),
-                param_key = (UInt16)(temp_group * MAX_ALLOWED_PARAMS_IN_GROUP + temp_param_idx)
+                param_key = (UInt16)(temp_group_int * MAX_ALLOWED_PARAMS_IN_GROUP + temp_param_idx)
             };
-            
+
             _tlm_db.Add(_node);
+
+            /* Update groups names list */
+            if (tlm_group_list.FindIndex(s => s.Contains(temp_group_str)) < 0)
+            {
+                tlm_group_list.Add(temp_group_str);
+            }
         }
 
         #endregion
@@ -439,10 +458,9 @@ namespace RT_Viewer.Framework
 
         #endregion
 
-        internal void UpdateChartLists()
+        internal void UpdateChartLists(Int32 mem_key)
         {
             UInt16 MAX_ALLOWED_PARAMS_IN_GROUP = 5; /* Need to be part of the header */
-            UInt16 key = 0x5;
 
             tlm_x_chart.Clear();
             tlm_y_chart.Clear();
@@ -451,7 +469,7 @@ namespace RT_Viewer.Framework
             double t_count = 0x0;
             foreach (var member in _tlm_db)
             {
-                if (member.param_key == key)
+                if (member.param_key == mem_key)
                 {
                     tlm_x_chart.Add(count_t * (1 + t_count++));
                     tlm_y_chart.Add(Convert.ToDouble(member.value));

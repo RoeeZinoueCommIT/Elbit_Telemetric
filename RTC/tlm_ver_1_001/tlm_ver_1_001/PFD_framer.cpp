@@ -65,7 +65,7 @@ void p_PFD_framer_init(void)
 /*--------------------------------------------------------------------------------------------------*/
 void p_PFD_update_params(void)
 {
-	g_TLM_module_info.pfd_test1+= 0.1;
+	g_TLM_module_info.pfd_test1+= 0.2;
 	g_TLM_module_info.pfd_test2++;
 	g_TLM_module_info.pfd_test3++;
 }

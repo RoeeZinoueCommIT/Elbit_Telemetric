@@ -289,6 +289,11 @@ bool p_TLM_pack(DT_TLM_param_info* xi_param_info)
 	{
 		switch (xi_param_info->data_type)
 		{
+			case TLM_DATA_INT1_INT8:
+				memset(g_TLM_temp_data, 0, sizeof(g_TLM_temp_data));
+				sprintf_s(g_TLM_temp_data, "%c", *(bool*)xi_param_info->data_ptr);
+				break;
+
 			case TLM_DATA_FLOAT_DOUBLE:
 				memset(g_TLM_temp_data, 0, sizeof(g_TLM_temp_data));
 				sprintf_s(g_TLM_temp_data, "%2.3f", *(float*)xi_param_info->data_ptr);

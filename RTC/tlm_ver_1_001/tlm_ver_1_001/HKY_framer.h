@@ -13,8 +13,11 @@
 
 typedef struct
 {
-	short pfd_test1;
-	short pfd_test2;
+	short hky_test1;
+	short hky_test2;
+	short hky_test3;
+	float hky_test4;
+	float hky_test5;
 }DT_TLM_hky_info;
 
 /* Exported variables */

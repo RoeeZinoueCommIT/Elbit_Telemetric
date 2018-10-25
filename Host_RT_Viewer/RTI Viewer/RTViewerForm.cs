@@ -3526,38 +3526,22 @@ namespace RT_Viewer
         #    TLM Event        #
         ######################*/
 
-        private void tlm_btn_SaveConfigurations_Click(object sender, EventArgs e)
-        {
-            socketRT1.tlmModule.SetTlmOptions
-            (
-                tlm_rdb_ReadSourceFile.Checked == true ?    TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_READ_SOURCE_FILE :
-                tlm_rdb_ReadSourceCurrent.Checked == true ? TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_READ_SOURCE_CURRENT :
-                tlm_rdb_ReadSourceFlash.Checked == true ?   TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_READ_SOURCE_FLASH :
-                                                            TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_NOT_SELECTED,
-                tlm_tbx_LoadFilePath.Text,
+        private void tlm_btn_SaveConfigurations_Click(object sender, EventArgs e) => socketRT1.tlmModule.SetTlmOptions
+        (
+            tlm_rdb_ReadSourceFile.Checked == true ? TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_READ_SOURCE_FILE :
+            tlm_rdb_ReadSourceCurrent.Checked == true ? TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_READ_SOURCE_CURRENT :
+            tlm_rdb_ReadSourceFlash.Checked == true ? TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_READ_SOURCE_FLASH :
+                                                        TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_NOT_SELECTED,
+            tlm_tbx_PathConfigFiles.Text,
 
-                tlm_rdb_SaveFileYes.Checked == true ?       TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_SAVE_FILE_NO :
-                                                            TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_SAVE_FILE_YES,
-                tlm_tbx_SaveFilePath.Text,
+            tlm_rdb_SortByGroups.Checked == true ? TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_SORT_GROUPS :
+            tlm_rdb_SortHighLow.Checked == true ? TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_SORT_HIGH_LOW :
+                                                        TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_SORT_LOW_HIGH,
 
-                tlm_rdb_SortByGroups.Checked == true ?      TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_SORT_GROUPS :
-                tlm_rdb_SortHighLow.Checked == true ?       TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_SORT_HIGH_LOW :
-                                                            TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_SORT_LOW_HIGH,
+            tlm_rdb_DataTypeChars.Checked == true ? TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_DATA_TYPE_CHARS :
+                                                        TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_DATA_TYPE_ORG
+        );
 
-                tlm_rdb_DataTypeChars.Checked == true ?     TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_DATA_TYPE_CHARS :
-                                                            TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_DATA_TYPE_ORG,
-
-                tlm_rdb_VisualModeTable.Checked == true ?   TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_VISUAL_TABLE :
-                                                            TLMModule.TLMModuleOptions.enumTLM_opt.TLM_OPT_VISUAL_FIGURE
-            );
-
-        }
-
-        private void tlm_btn_SelectDataMember_Click(object sender, EventArgs e)
-        {
-
-
-        }
 
         private void tlm_btn_ForceUpdate_Click(object sender, EventArgs e)
         {
@@ -3579,6 +3563,9 @@ namespace RT_Viewer
                 tlmTable_dataGridView.DataSource = socketRT1.tlmModule.BL_TLMDataTable;
                 tlmTable_dataGridView.Refresh();
 
+                /* Update find groups names combo-box */
+                tlm_cbx_FindGroup.DataSource = socketRT1.tlmModule.tlm_group_list;
+
             }
             
             
@@ -3588,13 +3575,48 @@ namespace RT_Viewer
 
         private void tlm_btn_FigureDataMember_Click(object sender, EventArgs e)
         {
-            DataTable dataTalbe = socketRT1.tlmModule.SelectDataMember(tlm_tbx_FindName.Text, tlm_tbx_FindGroup.SelectedText);
+            if(tlm_tbx_FindName.Text != string.Empty)
+            {
+                Int32 mem_key = socketRT1.tlmModule.SelectDataMember(tlm_tbx_FindName.Text, tlm_cbx_FindGroup.SelectedItem.ToString());
 
-            /* Update TLM DB chart lists */
-            socketRT1.tlmModule.UpdateChartLists();
+                /* Update TLM DB chart lists */
 
-            // Bind the chart to the list. 
-            tlm_chart_view.Series[0].Points.DataBindXY(socketRT1.tlmModule.tlm_x_chart, socketRT1.tlmModule.tlm_y_chart);
+                if (mem_key >= 0)
+                {
+                    socketRT1.tlmModule.UpdateChartLists(mem_key);
+
+                    // Bind the chart to the list. 
+                    tlm_chart_view.Series[0].Points.DataBindXY(socketRT1.tlmModule.tlm_x_chart, socketRT1.tlmModule.tlm_y_chart);
+
+                    List<string> list = new List<string>();
+
+                    list.Clear();
+                    foreach (var member in socketRT1.tlmModule.tlm_x_chart) list.Add(member.ToString());
+                    tlm_rtb_view_res_table_time.Lines = list.ToArray();
+
+                    list.Clear();
+                    foreach (var member in socketRT1.tlmModule.tlm_y_chart) list.Add(member.ToString());
+                    tlm_rtb_view_res_table_value.Lines = list.ToArray();
+                }
+            }
+        }
+
+        private void tlm_rdb_ReadSourceFile_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void tlm_rdb_ReadSourceFile_CheckedChanged(object sender, EventArgs e)
+        {
+            if(tlm_rdb_ReadSourceCurrent.Checked == true || tlm_rdb_ReadSourceFlash.Checked == true)
+            {
+                tlm_gbx_fileUpdate.Visible = false;
+
+            }
+            else if(true == tlm_rdb_ReadSourceFile.Checked)
+            {
+                tlm_gbx_fileUpdate.Visible = true;
+            }
         }
     }
 }

@@ -66,7 +66,7 @@ void p_TLM_pfd_db_init(void)
 	test1.group = TLM_GROUP_PFD;
 	test1.flash_store = TLM_FLASH_STORE_YES;
 	test1.visuality = TLM_VISUAL_YES;
-	test1.rate_level = TLM_RATE_FAST;
+	test1.rate_level = TLM_RATE_SLOW;
 	test1.param_exist = TLM_PARMAM_EXIST_YES;
 	g_TLM_db.tlm_info[(TLM_GROUP_PFD - 1) * C_TLM_MAX_PARAMTERS_IN_GROUP + g_TLM_db_pfd_param_indx++] = test1;
 

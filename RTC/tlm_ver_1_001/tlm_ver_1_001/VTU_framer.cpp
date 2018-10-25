@@ -197,6 +197,10 @@ void p_VTU_tlm_read_current(void)
 			printf("Group = %s, \tidx_location = %d \tData type = %d \tStore flash = %d \tVisual = %d", group_names[group - 1], param_idx, data_type, flah_store, visual);
 			switch (data_type)
 			{
+				case TLM_DATA_INT1_INT8:
+					sscanf_s((const char*)data, "%1d", &temp_int);
+					printf("\tData (INT8) = %1d \n\r", temp_int);
+					break;
 				case TLM_DATA_INT16:
 					sscanf_s((const char*)data, "%3d", &temp_int);
 					printf("\tData (INT16) = %3d \n\r", temp_int);
