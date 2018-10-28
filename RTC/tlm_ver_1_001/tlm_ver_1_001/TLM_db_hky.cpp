@@ -79,7 +79,7 @@ void p_TLM_hky_db_init(void)
 	test2.group = TLM_GROUP_HKY;
 	test2.flash_store = TLM_FLASH_STORE_YES;
 	test2.visuality = TLM_VISUAL_YES;
-	test2.rate_level = TLM_RATE_SLOW;
+	test2.rate_level = TLM_RATE_FAST;
 	test2.param_exist = TLM_PARMAM_EXIST_YES;
 	g_TLM_db.tlm_info[(TLM_GROUP_HKY - 1) * C_TLM_MAX_PARAMTERS_IN_GROUP + g_TLM_db_hky_param_indx++] = test2;
 
@@ -91,7 +91,7 @@ void p_TLM_hky_db_init(void)
 	test3.group = TLM_GROUP_HKY;
 	test3.flash_store = TLM_FLASH_STORE_YES;
 	test3.visuality = TLM_VISUAL_YES;
-	test3.rate_level = TLM_RATE_FAST;
+	test3.rate_level = TLM_RATE_SLOW;
 	test3.param_exist = TLM_PARMAM_EXIST_YES;
 	g_TLM_db.tlm_info[(TLM_GROUP_HKY - 1) * C_TLM_MAX_PARAMTERS_IN_GROUP + g_TLM_db_hky_param_indx++] = test3;
 

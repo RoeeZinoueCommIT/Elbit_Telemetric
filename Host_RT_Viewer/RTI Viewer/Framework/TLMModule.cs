@@ -148,6 +148,7 @@ namespace RT_Viewer.Framework
         string _readFileSourcePath = string.Empty;
         string _storeRawFilesPath = string.Empty;
         private readonly Int16 C_TLM_MAX_PACKET_SIZE_BYTES = 20;
+        int C_TLM_HEADER_NUM_BYTES = 2;
 
         /* Binding source */
         public BindingList<TLMDataTable> BL_TLMDataTable;
@@ -263,7 +264,7 @@ namespace RT_Viewer.Framework
             TlmStoreData(msg, size, type, source);
 
 
-            BL_TLMDataTable.Clear();
+            //BL_TLMDataTable.Clear();
             BL_TLMDataTable = new BindingList<TLMDataTable>(_tlm_db);
             
             DoInvoke(new IModuleEventArgs(this.deviceIdConnected));
@@ -277,14 +278,23 @@ namespace RT_Viewer.Framework
 
             try
             {
-                num_params = msg[msg.Length - 2];
-                if(num_params > 3)
+                if (msg.Length > 3)
                 {
-                    for (int idx = 0; idx < num_params; idx++)
+                    num_params = msg[0];
+
+                    if (num_params > 0)
                     {
-                        read_bytes = Prepere_read_packet(msg, read_bytes);
+                        for (int idx = 0; idx < num_params; idx++)
+                        {
+                            read_bytes = Prepere_read_packet(msg, read_bytes);
+                            if(read_bytes == 0)
+                            {
+                                break;
+                            }
+                        }
                     }
                 }
+                
                 
             }
             catch (Exception ex)
@@ -306,25 +316,34 @@ namespace RT_Viewer.Framework
             UInt16 data_size = 0x0;
             byte[] data;
 
-            /* Copy flags */
-            Buffer.BlockCopy(msg, read_bytes, flags, 0, 3);
+            try
+            {
+                /* Copy flags */
+                Buffer.BlockCopy(msg, C_TLM_HEADER_NUM_BYTES + read_bytes, flags, 0, 3);
+
+                /* Copy data */
+                data_size = p_TLM_get_data(flags[2], enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_BYTE_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_BYTE_LEN);
+                data = new byte[data_size];
+                if ((read_bytes + 3 + data_size) < msg.Length)
+                {
+                    Buffer.BlockCopy(msg, C_TLM_HEADER_NUM_BYTES + read_bytes + 3, data, 0, data_size);
+                }
+                else
+                {
+                    read_bytes = 0;
+                }
+
+                /* Pharsing new packet */
+                InsertNewLinkToDataList(flags, data, data_size);
+
+                read_bytes += data_size + num_of_flags_bytes;
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
             
-            /* Copy data */
-            data_size = p_TLM_get_data(flags[2], enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_BYTE_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_BYTE_LEN);
-            data = new byte[data_size];
-            if((read_bytes + 3 + data_size) < msg.Length)
-            {
-                Buffer.BlockCopy(msg, read_bytes + 3, data, 0, data_size);
-            }
-            else
-            {
-                return 0;
-            }
-
-            /* Pharsing new packet */
-            InsertNewLinkToDataList(flags, data, data_size);
-
-            read_bytes += data_size + num_of_flags_bytes;
             return (read_bytes);
         }
 
@@ -345,23 +364,30 @@ namespace RT_Viewer.Framework
             temp_rate = p_TLM_get_data(xi_flags[1], enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_TYPE_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_TYPE_LEN).ToString();
 
             /* Prepere new node and insert it to TLM DB list */
-            var _node = new TLMDataTable
+            try
             {
-                name = "A",
-                group = temp_group_str,
-                idx = temp_param_idx.ToString(),
-                value = System.Text.Encoding.Default.GetString(xi_data),
-                rate = "E",
-                Data_type = temp_type.ToString(),
-                param_key = (UInt16)(temp_group_int * MAX_ALLOWED_PARAMS_IN_GROUP + temp_param_idx)
-            };
+                var _node = new TLMDataTable
+                {
+                    name = "A",
+                    group = temp_group_str,
+                    idx = temp_param_idx.ToString(),
+                    value = System.Text.Encoding.Default.GetString(xi_data),
+                    rate = "E",
+                    Data_type = temp_type.ToString(),
+                    param_key = (UInt16)(temp_group_int * MAX_ALLOWED_PARAMS_IN_GROUP + temp_param_idx)
+                };
 
-            _tlm_db.Add(_node);
+                _tlm_db.Add(_node);
 
-            /* Update groups names list */
-            if (tlm_group_list.FindIndex(s => s.Contains(temp_group_str)) < 0)
+                /* Update groups names list */
+                if (tlm_group_list.FindIndex(s => s.Contains(temp_group_str)) < 0)
+                {
+                    tlm_group_list.Add(temp_group_str);
+                }
+            }
+            catch (Exception)
             {
-                tlm_group_list.Add(temp_group_str);
+                int a = 7;
             }
         }
 

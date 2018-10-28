@@ -1,11 +1,17 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(387,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (tlm_ver_1_001.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  TLM_db_pfd.cpp
+c:\software_projects\elbit\elbitmalat\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\tlm_db_pfd.cpp(1): warning C4603: 'TLM_DB_PFD_C': macro is not defined or definition is different after precompiled header use
+  c:\software_projects\elbit\elbitmalat\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\tlm_db_pfd.cpp(1): note: Add macro to precompiled header instead of defining here
+  c:\software_projects\elbit\elbitmalat\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\tlm_db_pfd.cpp(12): note: use of precompiled header
+  TLM_db_hky.cpp
+c:\software_projects\elbit\elbitmalat\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\tlm_db_hky.cpp(1): warning C4603: 'TLM_DB_HKY_C': macro is not defined or definition is different after precompiled header use
+  c:\software_projects\elbit\elbitmalat\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\tlm_db_hky.cpp(1): note: Add macro to precompiled header instead of defining here
+  c:\software_projects\elbit\elbitmalat\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\tlm_db_hky.cpp(12): note: use of precompiled header
   HKY_framer.cpp
 c:\software_projects\elbit\elbitmalat\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\hky_framer.cpp(1): warning C4603: 'HKY_FRAMER_C': macro is not defined or definition is different after precompiled header use
   c:\software_projects\elbit\elbitmalat\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\hky_framer.cpp(1): note: Add macro to precompiled header instead of defining here
   c:\software_projects\elbit\elbitmalat\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\hky_framer.cpp(12): note: use of precompiled header
-c:\software_projects\elbit\elbitmalat\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\hky_framer.cpp(86): warning C4305: '+=': truncation from 'double' to 'float'
-c:\software_projects\elbit\elbitmalat\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\hky_framer.cpp(87): warning C4305: '+=': truncation from 'double' to 'float'
-c:\software_projects\elbit\elbitmalat\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\hky_framer.cpp(91): warning C4305: '-=': truncation from 'double' to 'float'
-c:\software_projects\elbit\elbitmalat\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\hky_framer.cpp(92): warning C4305: '-=': truncation from 'double' to 'float'
+c:\software_projects\elbit\elbitmalat\telemetric\rtc\tlm_ver_1_001\tlm_ver_1_001\hky_framer.cpp(75): warning C4305: '+=': truncation from 'double' to 'float'
+  Generating Code...
   tlm_ver_1_001.vcxproj -> C:\Software_projects\Elbit\ElbitMalat\Telemetric\RTC\tlm_ver_1_001\Debug\tlm.exe
   tlm_ver_1_001.vcxproj -> C:\Software_projects\Elbit\ElbitMalat\Telemetric\RTC\tlm_ver_1_001\Debug\tlm.pdb (Partial PDB)

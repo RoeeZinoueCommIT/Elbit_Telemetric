@@ -142,7 +142,7 @@ void p_VTU_tlm_read_flash(void)
 void p_VTU_tlm_read_current(void)
 {
 	unsigned char*	p_read_array = NULL;
-	unsigned short	members[C_TLM_PACKET_HEADER_BYTES];
+	unsigned short	members;
 	unsigned char	data[C_TLM_MAX_DATA_BYTE_IN_PARAM];
 	unsigned char	flags[C_TLM_NUM_FLAGS_BYTES];
 
@@ -165,24 +165,24 @@ void p_VTU_tlm_read_current(void)
 	fprintf(file, "\n");
 	fclose(file);
 
-	memcpy(members, p_read_array + C_TLM_CURRENT_MAX_DATA_BYTES, sizeof(members));
+	memcpy(&members, p_read_array, sizeof(members));
 
-	if ((int)members[0] > 0)
+	if (members > 0)
 	{
-		for (; members_cnt < members[0]; members_cnt++)
+		for (; members_cnt < members; members_cnt++)
 		{
 			/* Clear data container */
 			memset(flags, 0, sizeof(flags));
 			memset(data, 0, sizeof(data));
 
 			/* Copy member flags */
-			memcpy(flags, p_read_array + read_bytes, C_TLM_NUM_FLAGS_BYTES);
+			memcpy(flags, p_read_array + C_TLM_PACKET_HEADER_BYTES + read_bytes, C_TLM_NUM_FLAGS_BYTES);
 
 			/* Get number of real data byes */
 			data_bytes = p_TLM_get_data(&flags[2], TLM_BIT_FIELD_C_DATA_BYTE_IDX, TLM_BIT_FIELD_C_DATA_BYTE_LEN);
 
 			/* Copy member data */
-			memcpy(data, (p_read_array + read_bytes) + C_TLM_NUM_FLAGS_BYTES, (data_bytes)* sizeof(char));
+			memcpy(data, p_read_array + C_TLM_PACKET_HEADER_BYTES + read_bytes + C_TLM_NUM_FLAGS_BYTES, (data_bytes)* sizeof(char));
 
 			/* Update data_bytes for next round */
 			read_bytes += C_TLM_NUM_FLAGS_BYTES + data_bytes;

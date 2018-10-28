@@ -49,9 +49,11 @@ DT_TLM_hky_info g_TLM_module_info;
 /*--------------------------------------------------------------------------------------------------*/
 void p_HKY_framer_init(void)
 {
+	g_TLM_module_info.hky_test1 = 1;
+	g_TLM_module_info.hky_test2 = 2;
 	g_TLM_module_info.hky_test3 = 0;
-	g_TLM_module_info.hky_test2 = 0;
-	g_TLM_module_info.hky_test3 = 0;
+	g_TLM_module_info.hky_test4 = 0;
+	g_TLM_module_info.hky_test5 = 0;
 }
 
 bool dir = 1;
@@ -67,30 +69,11 @@ bool dir = 1;
 /*--------------------------------------------------------------------------------------------------*/
 void p_HKY_update_params(void)
 {
-
-	g_TLM_module_info.hky_test1+= 5;
-	g_TLM_module_info.hky_test2+= 2;
-	g_TLM_module_info.hky_test3 += 7;
-	
-	if (g_TLM_module_info.hky_test5 > 10)
-	{
-		dir = 1;
-	}
-	else if (g_TLM_module_info.hky_test5 < 0.5)
-	{
-		dir = 0;
-	}
-
-	if (dir == 1)
-	{
-		g_TLM_module_info.hky_test4 += 0.2;
-		g_TLM_module_info.hky_test5 += 0.4;
-	}
-	else
-	{
-		g_TLM_module_info.hky_test4 -= 0.1;
-		g_TLM_module_info.hky_test5 -= 0.3;
-	}
+	g_TLM_module_info.hky_test1 += 2;
+	g_TLM_module_info.hky_test2 += 2;
+	g_TLM_module_info.hky_test3 += 10;
+	g_TLM_module_info.hky_test4 += 0.1;
+	g_TLM_module_info.hky_test5 += 0.5;
 }
 
 /*$PROCEDURE$---------------------------------------------------------------------------------------*/

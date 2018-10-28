@@ -40,7 +40,7 @@ unsigned short			g_TLM_flash_idx_wr = 0;					/* Flash write (bytes) counter */
 unsigned int			g_TLM_flash_header_counter = 0;
 
 unsigned short			g_TLM_current_idx_wr = 0;					/* Flash write (bytes) counter */
-unsigned int			g_TLM_current_header_counter = 0;
+unsigned short			g_TLM_current_header_counter = 0;
 /* --------------------------- */
 /* Internal Methods prototypes */
 /* --------------------------- */
@@ -206,7 +206,7 @@ bool p_TLM_update_current(unsigned int xi_packet_indx)
 			/* Find old packets to remove to make space for new packet */
 			do
 			{
-				shift_bytes_cnt += p_TLM_get_data(&g_TLM_db.tlm_current_data[shift_bytes_cnt + C_TLM_NUM_FLAGS_BYTES - 1], TLM_BIT_FIELD_C_DATA_BYTE_IDX, TLM_BIT_FIELD_C_DATA_BYTE_LEN);
+				shift_bytes_cnt += p_TLM_get_data(&g_TLM_db.tlm_current_data[C_TLM_PACKET_HEADER_BYTES + shift_bytes_cnt + C_TLM_NUM_FLAGS_BYTES - 1], TLM_BIT_FIELD_C_DATA_BYTE_IDX, TLM_BIT_FIELD_C_DATA_BYTE_LEN);
 				shift_bytes_cnt += C_TLM_NUM_FLAGS_BYTES;
 
 				/* Update packet counter that we remove packet from Current data queue */
@@ -216,11 +216,11 @@ bool p_TLM_update_current(unsigned int xi_packet_indx)
 
 			for (; byte_idx < C_TLM_CURRENT_MAX_DATA_BYTES - shift_bytes_cnt; byte_idx++)
 			{
-				g_TLM_db.tlm_current_data[byte_idx] = g_TLM_db.tlm_current_data[byte_idx + shift_bytes_cnt];
+				g_TLM_db.tlm_current_data[C_TLM_PACKET_HEADER_BYTES + byte_idx] = g_TLM_db.tlm_current_data[C_TLM_PACKET_HEADER_BYTES + byte_idx + shift_bytes_cnt];
 			}
 
 			// Fill space till end of flash queue
-			for (byte_idx = g_TLM_current_idx_wr - shift_bytes_cnt; byte_idx < C_TLM_CURRENT_MAX_DATA_BYTES; byte_idx++)
+			for (byte_idx = g_TLM_current_idx_wr - shift_bytes_cnt + C_TLM_PACKET_HEADER_BYTES; byte_idx < C_TLM_CURRENT_MAX_DATA_BYTES; byte_idx++)
 			{
 				g_TLM_db.tlm_current_data[byte_idx] = NULL;
 			}
@@ -229,16 +229,16 @@ bool p_TLM_update_current(unsigned int xi_packet_indx)
 			g_TLM_current_idx_wr -= (shift_bytes_cnt);
 		}
 
-		/* B. Write configuration bytes */
-		memcpy(g_TLM_db.tlm_current_data + g_TLM_current_idx_wr, g_TLM_temp_flags, C_TLM_NUM_FLAGS_BYTES * sizeof(char));
-
-
-		/* C. Write data bytes to FLASH queue */
-		memcpy(g_TLM_db.tlm_current_data + C_TLM_NUM_FLAGS_BYTES + g_TLM_current_idx_wr, g_TLM_temp_data, num_real_byte * sizeof(char));
-
-		/* D. Update flash header bytes (update number of bytes in flash) */
+		/* B. Update flash header bytes (update number of bytes in flash) */
 		g_TLM_current_header_counter++;
-		memcpy(g_TLM_db.tlm_current_data + C_TLM_CURRENT_MAX_DATA_BYTES, &g_TLM_current_header_counter, sizeof(g_TLM_current_header_counter));
+		memcpy(g_TLM_db.tlm_current_data, &g_TLM_current_header_counter, sizeof(g_TLM_current_header_counter));
+
+		/* C. Write configuration bytes */
+		memcpy(g_TLM_db.tlm_current_data + C_TLM_PACKET_HEADER_BYTES + g_TLM_current_idx_wr, g_TLM_temp_flags, C_TLM_NUM_FLAGS_BYTES * sizeof(char));
+
+
+		/* D. Write data bytes to FLASH queue */
+		memcpy(g_TLM_db.tlm_current_data + C_TLM_PACKET_HEADER_BYTES + C_TLM_NUM_FLAGS_BYTES + g_TLM_current_idx_wr, g_TLM_temp_data, num_real_byte * sizeof(char));
 
 		/* E. update flash write counter */
 		g_TLM_current_idx_wr += new_packet_size;
