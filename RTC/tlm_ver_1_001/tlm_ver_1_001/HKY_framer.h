@@ -13,7 +13,7 @@
 
 typedef struct
 {
-	short hky_test1;
+	int hky_test1;
 	short hky_test2;
 	short hky_test3;
 	float hky_test4;

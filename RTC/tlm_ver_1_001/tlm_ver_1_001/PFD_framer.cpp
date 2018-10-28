@@ -49,9 +49,9 @@ DT_TLM_pfd_info g_TLM_module_info;
 /*--------------------------------------------------------------------------------------------------*/
 void p_PFD_framer_init(void)
 {
-	g_TLM_module_info.pfd_test1 = 123.4562;
-	g_TLM_module_info.pfd_test2 = 255;
-	g_TLM_module_info.pfd_test3 = 101;
+	g_TLM_module_info.pfd_test1 = 1.123567;
+	g_TLM_module_info.pfd_test2 = 7;
+	g_TLM_module_info.pfd_test3 = 8;
 }
 
 /*$PROCEDURE$---------------------------------------------------------------------------------------*/
@@ -65,7 +65,7 @@ void p_PFD_framer_init(void)
 /*--------------------------------------------------------------------------------------------------*/
 void p_PFD_update_params(void)
 {
-	g_TLM_module_info.pfd_test1+= 0.2;
+	g_TLM_module_info.pfd_test1+= 0.0005;
 	g_TLM_module_info.pfd_test2++;
 	g_TLM_module_info.pfd_test3++;
 }

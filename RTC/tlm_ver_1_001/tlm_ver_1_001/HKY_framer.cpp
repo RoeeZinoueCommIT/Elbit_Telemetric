@@ -51,9 +51,9 @@ void p_HKY_framer_init(void)
 {
 	g_TLM_module_info.hky_test1 = 1;
 	g_TLM_module_info.hky_test2 = 2;
-	g_TLM_module_info.hky_test3 = 0;
-	g_TLM_module_info.hky_test4 = 0;
-	g_TLM_module_info.hky_test5 = 0;
+	g_TLM_module_info.hky_test3 = 3;
+	g_TLM_module_info.hky_test4 = 0.25;
+	g_TLM_module_info.hky_test5 = 0.5;
 }
 
 bool dir = 1;
@@ -70,9 +70,9 @@ bool dir = 1;
 void p_HKY_update_params(void)
 {
 	g_TLM_module_info.hky_test1 += 2;
-	g_TLM_module_info.hky_test2 += 2;
+	g_TLM_module_info.hky_test2 -= 2;
 	g_TLM_module_info.hky_test3 += 10;
-	g_TLM_module_info.hky_test4 += 0.1;
+	g_TLM_module_info.hky_test4 += 0.25;
 	g_TLM_module_info.hky_test5 += 0.5;
 }
 

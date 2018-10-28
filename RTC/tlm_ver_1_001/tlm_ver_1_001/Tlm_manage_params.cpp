@@ -77,7 +77,7 @@ bool p_TLM_update_params(void)
 
 			if (true == ret)
 			{
-				if ((g_TLM_timer % g_TLM_db.tlm_info[param_idx].rate_level) == 0)
+				if (g_TLM_timer % (g_TLM_db.tlm_info[param_idx].rate_level ) == 0)
 				{
 					/* Check if we need to store the packet to Flash */
 					if (g_TLM_db.tlm_info[param_idx].flash_store == TLM_FLASH_STORE_YES)
@@ -273,14 +273,14 @@ bool p_TLM_pack(DT_TLM_param_info* xi_param_info)
 	memset(g_TLM_temp_data, 0, sizeof(g_TLM_temp_data));
 
 	/* Prepere first configuration flag */
-	g_TLM_temp_flags[0] |= xi_param_info->param_exist << TLM_BIT_FIELD_A_EXIST_IDX;
+	g_TLM_temp_flags[0] |= xi_param_info->flash_store << TLM_BIT_FIELD_A_FLASH_IDX;
 	g_TLM_temp_flags[0] |= xi_param_info->group << TLM_BIT_FIELD_A_GROUP_IDX;
 	g_TLM_temp_flags[0] |= xi_param_info->data_sign << TLM_BIT_FIELD_A_DATA_SIGN_IDX;
 
 	/* Prepere Second configuration flag */
 	g_TLM_temp_flags[1] |= xi_param_info->param_idx << TLM_BIT_FIELD_B_PARAM_IDX;
 	g_TLM_temp_flags[1] |= xi_param_info->visuality << TLM_BIT_FIELD_B_VISUALITY_IDX;
-	g_TLM_temp_flags[1] |= xi_param_info->flash_store << TLM_BIT_FIELD_B_FLASH_IDX;
+	g_TLM_temp_flags[1] |= xi_param_info->rate_level << TLM_BIT_FIELD_B_RATE_IDX;
 
 	/* Prepere Third configuration flag */
 	g_TLM_temp_flags[2] |= xi_param_info->data_type << TLM_BIT_FIELD_C_DATA_TYPE_IDX;

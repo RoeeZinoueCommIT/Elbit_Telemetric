@@ -50,31 +50,31 @@ namespace RT_Viewer.Framework
         {
             /* First configuration byte */
 
-            /* PARAM_EXIST */
-            TLM_BIT_FIELD_A_EXIST_IDX = 0x0,
-            TLM_BIT_FIELD_A_EXIST_LEN = 0x1,
+            /* FLASH STORE: YES / NO */
+            TLM_BIT_FIELD_A_FLASH_IDX = 0x0,
+            TLM_BIT_FIELD_A_FLASH_LEN = 0x1,
 
             /* GROUP - Up to 32 groups */
             TLM_BIT_FIELD_A_GROUP_IDX = 0x1,
             TLM_BIT_FIELD_A_GROUP_LEN = 0x5,
 
             /* DATA SIGN */
-            TLM_BIT_FIELD_A_DATA_SIGN_IDX = 0x4,
+            TLM_BIT_FIELD_A_DATA_SIGN_IDX = 0x6,
             TLM_BIT_FIELD_A_DATA_SIGN_LEN = 0x1,
 
             /* Second configuration byte */
 
-            /* PARAM_IDX - Up to 15 params in each module */
+            /* PARAM_IDX - Up to 8 params in each module */
             TLM_BIT_FIELD_B_PARAM_IDX = 0x0,
-            TLM_BIT_FIELD_B_PARAM_LEN = 0x4,
+            TLM_BIT_FIELD_B_PARAM_LEN = 0x3,
 
             /* VISUALITY: YES / NO */
-            TLM_BIT_FIELD_B_VISUALITY_IDX = 0x4,
+            TLM_BIT_FIELD_B_VISUALITY_IDX = 0x3,
             TLM_BIT_FIELD_B_VISUALITY_LEN = 0x1,
 
-            /* FLASH STORE: YES / NO */
-            TLM_BIT_FIELD_B_FLASH_IDX = 0x5,
-            TLM_BIT_FIELD_B_FLASH_LEN = 0x1,
+            /* RATE: */
+            TLM_BIT_FIELD_B_RATE_IDX = 0x4,
+            TLM_BIT_FIELD_B_RATE_LEN = 0x2,
 
             /* Third configuration byte */
 
@@ -98,11 +98,11 @@ namespace RT_Viewer.Framework
 
         enum enumTLM_data_type : int
         {
-            TLM_DATA_INT1_INT8 = 0,         /* char range: 0 - 255 */
+            TLM_DATA_CHAR = 0,              /* char range: 0 - 255 */
             TLM_DATA_INT16,                 /* int range: 0 -:- 65,535 */
             TLM_DATA_INT32,                 /* int range: 0 -:- 65,535 */
             TLM_DATA_INT64,                 /* int range: 0 -:- 65,535 */
-            TLM_DATA_FLOAT_DOUBLE,          /* Float range: 6 decimal places, Double range: 15 decimal places */
+            TLM_DATA_REAL,                  /* Float range: 6 decimal places, Double range: 15 decimal places */
         };
 
         enum enumTLM_data_sign : int
@@ -119,6 +119,13 @@ namespace RT_Viewer.Framework
             TLM_OPT_IDX_DATA_TYPE_IDX,
         };
 
+        enum enumTLM_rate_type : int
+        {
+            TLM_RATE_FAST   = 1,    /* 1 * 100 mSec rate = 100 msec*/
+            TLM_RATE_NORMAL = 2,    /* 2 * 100 mSec rate = 200 msec*/
+            TLM_RATE_SLOW   = 3     /* 3 * 100 mSec rate = 300 msec*/
+        };
+        
         #endregion
 
         #region TLM data tables
@@ -131,6 +138,7 @@ namespace RT_Viewer.Framework
             public string value { get; set; }
             public string rate { get; set; }
             public string Data_type { get; set; }
+            public string Data_sign { get; set; }
             public UInt32 param_key { get; set; }
         }
 
@@ -353,27 +361,32 @@ namespace RT_Viewer.Framework
 
             string temp_group_str = string.Empty;
             UInt16 temp_param_idx = 0x0, temp_group_int = 0x0;
+            UInt16 temp_sign = 0x0;
             UInt16 temp_type = 0x0;
-            string temp_rate = string.Empty;
+            UInt16 temp_rate = 0x0;
 
 
             temp_group_int = p_TLM_get_data(xi_flags[0], enumTLM_bit_field_type.TLM_BIT_FIELD_A_GROUP_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_A_GROUP_LEN);
             temp_group_str = ((enumTLM_group_type)temp_group_int).ToString();
-            temp_param_idx = p_TLM_get_data(xi_flags[1], enumTLM_bit_field_type.TLM_BIT_FIELD_B_PARAM_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_B_PARAM_LEN);
-            temp_type = p_TLM_get_data(xi_flags[1], enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_TYPE_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_TYPE_LEN);
-            temp_rate = p_TLM_get_data(xi_flags[1], enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_TYPE_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_TYPE_LEN).ToString();
+            temp_sign = p_TLM_get_data(xi_flags[0], enumTLM_bit_field_type.TLM_BIT_FIELD_A_DATA_SIGN_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_A_DATA_SIGN_LEN);
 
+            temp_param_idx = p_TLM_get_data(xi_flags[1], enumTLM_bit_field_type.TLM_BIT_FIELD_B_PARAM_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_B_PARAM_LEN);
+            temp_rate = p_TLM_get_data(xi_flags[1], enumTLM_bit_field_type.TLM_BIT_FIELD_B_RATE_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_B_RATE_LEN);
+
+            temp_type = p_TLM_get_data(xi_flags[2], enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_TYPE_IDX, enumTLM_bit_field_type.TLM_BIT_FIELD_C_DATA_TYPE_LEN);
+            
             /* Prepere new node and insert it to TLM DB list */
             try
             {
                 var _node = new TLMDataTable
                 {
                     name = "A",
-                    group = temp_group_str,
+                    group = ((enumTLM_group_type)temp_group_int).ToString().Split('_')[2],
                     idx = temp_param_idx.ToString(),
                     value = System.Text.Encoding.Default.GetString(xi_data),
-                    rate = "E",
-                    Data_type = temp_type.ToString(),
+                    rate = ((enumTLM_rate_type)temp_rate).ToString().Split('_')[2],
+                    Data_type = ((enumTLM_data_type)temp_type).ToString().Split('_')[2],
+                    Data_sign = ((enumTLM_data_sign)temp_sign).ToString().Split('_')[2],
                     param_key = (UInt16)(temp_group_int * MAX_ALLOWED_PARAMS_IN_GROUP + temp_param_idx)
                 };
 
@@ -491,13 +504,26 @@ namespace RT_Viewer.Framework
             tlm_x_chart.Clear();
             tlm_y_chart.Clear();
 
-            double count_t = 0.3;
+            double count_t = 0.1;
             double t_count = 0x0;
             foreach (var member in _tlm_db)
             {
                 if (member.param_key == mem_key)
                 {
-                    tlm_x_chart.Add(count_t * (1 + t_count++));
+                    if(member.rate == "FAST")
+                    {
+                        t_count += 0.3;
+                    }
+                    else if (member.rate == "NORMAL")
+                    {
+                        t_count += 0.2;
+                    }
+                    else if (member.rate == "SLOW")
+                    {
+                        t_count += 0.1;
+                    }
+
+                    tlm_x_chart.Add(t_count * 1000);
                     tlm_y_chart.Add(Convert.ToDouble(member.value));
                 }
             }

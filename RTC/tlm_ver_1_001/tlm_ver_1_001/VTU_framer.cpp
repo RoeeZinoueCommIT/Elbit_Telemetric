@@ -94,8 +94,9 @@ void p_VTU_tlm_read_flash(void)
 
 			/* Get group,  param_idx, data_type */
 			group = p_TLM_get_data(&flags[0], TLM_BIT_FIELD_A_GROUP_IDX, TLM_BIT_FIELD_A_GROUP_LEN);
+			flah_store = p_TLM_get_data(&flags[0], TLM_BIT_FIELD_A_FLASH_IDX, TLM_BIT_FIELD_A_FLASH_LEN);
+
 			param_idx = p_TLM_get_data(&flags[1], TLM_BIT_FIELD_B_PARAM_IDX, TLM_BIT_FIELD_B_PARAM_LEN);
-			flah_store = p_TLM_get_data(&flags[1], TLM_BIT_FIELD_B_FLASH_IDX, TLM_BIT_FIELD_B_FLASH_LEN);
 			visual = p_TLM_get_data(&flags[1], TLM_BIT_FIELD_B_VISUALITY_IDX, TLM_BIT_FIELD_B_VISUALITY_LEN);
 			data_type = p_TLM_get_data(&flags[2], TLM_BIT_FIELD_C_DATA_TYPE_IDX, TLM_BIT_FIELD_C_DATA_TYPE_LEN);
 
@@ -148,7 +149,7 @@ void p_VTU_tlm_read_current(void)
 
 	unsigned char	data_file[C_TLM_CURRENT_MAX_DATA_BYTES + C_TLM_PACKET_HEADER_BYTES];
 
-	unsigned short	data_type = 0x0, read_bytes = 0x0, data_bytes = 0x0, param_idx = 0x0, visual = 0x0;
+	unsigned short	data_type = 0x0, read_bytes = 0x0, data_bytes = 0x0, param_idx = 0x0, visual = 0x0, rate_level = 0x0;
 	bool			flah_store = false;
 	unsigned int	members_cnt = 0;
 	unsigned int	group = 0x0;
@@ -187,14 +188,25 @@ void p_VTU_tlm_read_current(void)
 			/* Update data_bytes for next round */
 			read_bytes += C_TLM_NUM_FLAGS_BYTES + data_bytes;
 
-			/* Get group,  param_idx, data_type */
+			/* Get member info */
 			group = p_TLM_get_data(&flags[0], TLM_BIT_FIELD_A_GROUP_IDX, TLM_BIT_FIELD_A_GROUP_LEN);
-			param_idx = p_TLM_get_data(&flags[1], TLM_BIT_FIELD_B_PARAM_IDX, TLM_BIT_FIELD_B_PARAM_LEN);
-			flah_store = p_TLM_get_data(&flags[1], TLM_BIT_FIELD_B_FLASH_IDX, TLM_BIT_FIELD_B_FLASH_LEN);
-			visual = p_TLM_get_data(&flags[1], TLM_BIT_FIELD_B_VISUALITY_IDX, TLM_BIT_FIELD_B_VISUALITY_LEN);
-			data_type = p_TLM_get_data(&flags[2], TLM_BIT_FIELD_C_DATA_TYPE_IDX, TLM_BIT_FIELD_C_DATA_TYPE_LEN);
+			flah_store = p_TLM_get_data(&flags[0], TLM_BIT_FIELD_A_FLASH_IDX, TLM_BIT_FIELD_A_FLASH_LEN);
 
-			printf("Group = %s, \tidx_location = %d \tData type = %d \tStore flash = %d \tVisual = %d", group_names[group - 1], param_idx, data_type, flah_store, visual);
+			param_idx = p_TLM_get_data(&flags[1], TLM_BIT_FIELD_B_PARAM_IDX, TLM_BIT_FIELD_B_PARAM_LEN);
+			visual = p_TLM_get_data(&flags[1], TLM_BIT_FIELD_B_VISUALITY_IDX, TLM_BIT_FIELD_B_VISUALITY_LEN);
+			rate_level = p_TLM_get_data(&flags[1], TLM_BIT_FIELD_B_RATE_IDX, TLM_BIT_FIELD_C_DATA_TYPE_LEN);
+
+			data_type = p_TLM_get_data(&flags[2], TLM_BIT_FIELD_C_DATA_TYPE_IDX, TLM_BIT_FIELD_C_DATA_TYPE_LEN);
+			
+
+			printf("Group: %s, \tidx: %d \tType: %d \tRate: %d \tFlash: %d \tVisual: %d", 
+				group_names[group - 1], 
+				param_idx, 
+				data_type, 
+				rate_level,
+				flah_store, 
+				visual
+			);
 			switch (data_type)
 			{
 				case TLM_DATA_INT1_INT8:

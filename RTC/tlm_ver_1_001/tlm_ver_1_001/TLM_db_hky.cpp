@@ -62,8 +62,8 @@ void p_TLM_hky_db_init(void)
 	DT_TLM_param_info test1;
 	test1.param_idx = g_TLM_db_hky_param_indx;
 	test1.data_ptr = &p_db_base->hky_test1;
-	test1.data_type = TLM_DATA_INT16;
-	test1.data_sign = TLM_DATA_UNSIGN;
+	test1.data_type = TLM_DATA_INT32;
+	test1.data_sign = TLM_DATA_SIGN;
 	test1.group = TLM_GROUP_HKY;
 	test1.flash_store = TLM_FLASH_STORE_YES;
 	test1.visuality = TLM_VISUAL_YES;
@@ -87,11 +87,11 @@ void p_TLM_hky_db_init(void)
 	test3.param_idx = g_TLM_db_hky_param_indx;
 	test3.data_ptr = &p_db_base->hky_test3;
 	test3.data_type = TLM_DATA_INT16;
-	test3.data_sign = TLM_DATA_UNSIGN;
+	test3.data_sign = TLM_DATA_SIGN;
 	test3.group = TLM_GROUP_HKY;
 	test3.flash_store = TLM_FLASH_STORE_YES;
 	test3.visuality = TLM_VISUAL_YES;
-	test3.rate_level = TLM_RATE_SLOW;
+	test3.rate_level = TLM_RATE_FAST;
 	test3.param_exist = TLM_PARMAM_EXIST_YES;
 	g_TLM_db.tlm_info[(TLM_GROUP_HKY - 1) * C_TLM_MAX_PARAMTERS_IN_GROUP + g_TLM_db_hky_param_indx++] = test3;
 

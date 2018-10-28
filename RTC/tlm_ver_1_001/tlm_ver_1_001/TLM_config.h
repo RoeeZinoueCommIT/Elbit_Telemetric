@@ -29,6 +29,7 @@
 		
 		/* Time constants */
 #define C_TLM_TIME_STORE_FLASH_MSEC		(50u)	/* Need to be read from offline parameters */
+#define C_TLM_REFRESH_MULT_FACTOR_MSEC  (50u)
 
 
 /* Exported Macros */
@@ -39,31 +40,31 @@ typedef enum
 {
 		/* First configuration byte */
 
-	/* PARAM_EXIST */
-	TLM_BIT_FIELD_A_EXIST_IDX		= 0x0,
-	TLM_BIT_FIELD_A_EXIST_LEN		= 0x1,
+	/* FLASH STORE: YES / NO */
+	TLM_BIT_FIELD_A_FLASH_IDX		= 0x0,
+	TLM_BIT_FIELD_A_FLASH_LEN		= 0x1,
 
 	/* GROUP - Up to 32 groups */
 	TLM_BIT_FIELD_A_GROUP_IDX		= 0x1,
 	TLM_BIT_FIELD_A_GROUP_LEN		= 0x5,
 
 	/* DATA SIGN */
-	TLM_BIT_FIELD_A_DATA_SIGN_IDX	= 0x4,
+	TLM_BIT_FIELD_A_DATA_SIGN_IDX	= 0x6,
 	TLM_BIT_FIELD_A_DATA_SIGN_LEN	= 0x1,
 
 		/* Second configuration byte */
 	
-	/* PARAM_IDX - Up to 15 params in each module */
+	/* PARAM_IDX - Up to 8 params in each module */
 	TLM_BIT_FIELD_B_PARAM_IDX		= 0x0,
-	TLM_BIT_FIELD_B_PARAM_LEN		= 0x4,
+	TLM_BIT_FIELD_B_PARAM_LEN		= 0x3,
 	
 	/* VISUALITY: YES / NO */
-	TLM_BIT_FIELD_B_VISUALITY_IDX	= 0x4,
+	TLM_BIT_FIELD_B_VISUALITY_IDX	= 0x3,
 	TLM_BIT_FIELD_B_VISUALITY_LEN	= 0x1,
 
-	/* FLASH STORE: YES / NO */
-	TLM_BIT_FIELD_B_FLASH_IDX		= 0x5,
-	TLM_BIT_FIELD_B_FLASH_LEN		= 0x1,
+	/* RATE: */
+	TLM_BIT_FIELD_B_RATE_IDX		= 0x4,
+	TLM_BIT_FIELD_B_RATE_LEN		= 0x2,
 
 		/* Third configuration byte */
 
@@ -74,8 +75,7 @@ typedef enum
 	/* REAL DATA BYTE */
 	TLM_BIT_FIELD_C_DATA_BYTE_IDX	= 0x3,
 	TLM_BIT_FIELD_C_DATA_BYTE_LEN	= 0x4,
-	
-	
+
 }enumTLM_bit_field_type;
 
 typedef enum
@@ -122,9 +122,9 @@ typedef enum
 
 typedef enum
 {
-	TLM_RATE_FAST			= 2,		/* 2 * 100 mSec rate = 200 msec*/
-	TLM_RATE_NORMAL			= 3, 		/* 3 * 100 mSec rate = 300 msec*/
-	TLM_RATE_SLOW			= 8			/* 8 * 100 mSec rate = 800 msec*/
+	TLM_RATE_FAST			= 1,		/* 1 * 100 mSec rate = 100 msec*/
+	TLM_RATE_NORMAL			= 2, 		/* 2 * 100 mSec rate = 200 msec*/
+	TLM_RATE_SLOW			= 3			/* 3 * 100 mSec rate = 300 msec*/
 }enumTLM_rate_type;
 
 typedef struct
