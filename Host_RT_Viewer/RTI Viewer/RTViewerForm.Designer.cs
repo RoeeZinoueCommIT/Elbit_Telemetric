@@ -31,18 +31,18 @@ namespace RT_Viewer
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RTViewerForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pause_button = new System.Windows.Forms.Button();
             this.startRecieve_button = new System.Windows.Forms.Button();
             this.uplTable_groupBox = new System.Windows.Forms.GroupBox();
@@ -437,6 +437,14 @@ namespace RT_Viewer
             this.gdt_tabPage = new System.Windows.Forms.TabPage();
             this.tlm_tabPage = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tlm_tbx_SavePath = new System.Windows.Forms.TextBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.tlm_lbl_status = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.tlm_btn_reset_tlm = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
             this.tlm_tbx_PathConfigFiles = new System.Windows.Forms.TextBox();
@@ -445,10 +453,10 @@ namespace RT_Viewer
             this.tlm_rdb_DataTypeOrginal = new System.Windows.Forms.RadioButton();
             this.tlm_rdb_DataTypeChars = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.tlm_rdb_SortLowHigh = new System.Windows.Forms.RadioButton();
+            this.tlm_rdb_SortIndex = new System.Windows.Forms.RadioButton();
             this.tlm_rdb_SortHighLow = new System.Windows.Forms.RadioButton();
             this.tlm_rdb_SortByGroups = new System.Windows.Forms.RadioButton();
-            this.tlm_btn_SaveConfigurations = new System.Windows.Forms.Button();
+            this.tlm_btn_LoadConfigurations = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tlm_btn_FigureDataMember = new System.Windows.Forms.Button();
             this.tlm_cbx_FindGroup = new System.Windows.Forms.ComboBox();
@@ -468,22 +476,23 @@ namespace RT_Viewer
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.tlm_cbx_SaveBigTableType = new System.Windows.Forms.ComboBox();
             this.tlm_btn_SaveBigTableSelect = new System.Windows.Forms.Button();
-            this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.tlm_tbx_SaveBigTablePath = new System.Windows.Forms.TextBox();
             this.tlmTable_dataGridView = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idxDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Data_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Data_sign = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tlmTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tlm_visual_tabPage = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tlm_cbx_ViewerSaveType = new System.Windows.Forms.ComboBox();
             this.tlm_btn_ViewerSave = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.tlm_btn_ViewerSavePath = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.tlm_rtb_view_res_table_time = new System.Windows.Forms.RichTextBox();
-            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.tlm_rtb_view_res_table_value = new System.Windows.Forms.RichTextBox();
             this.tlm_gbx_view_figure = new System.Windows.Forms.GroupBox();
             this.tlm_chart_view = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -549,13 +558,6 @@ namespace RT_Viewer
             this.dNLTableBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.dNLTableBindingSource4 = new System.Windows.Forms.BindingSource(this.components);
             this.Tlm_openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idxDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Data_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Data_sign = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uplTable_groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uplTable_dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uPLTableBindingSource)).BeginInit();
@@ -677,6 +679,8 @@ namespace RT_Viewer
             this.gdt_tabPage.SuspendLayout();
             this.tlm_tabPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -2946,14 +2950,14 @@ namespace RT_Viewer
             this.stick_dataGridView.AllowUserToAddRows = false;
             this.stick_dataGridView.AllowUserToDeleteRows = false;
             this.stick_dataGridView.AutoGenerateColumns = false;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.stick_dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.stick_dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.stick_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.stick_dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tailnumberDataGridViewTextBoxColumn3,
@@ -2963,26 +2967,26 @@ namespace RT_Viewer
             this.taxicommandsentDataGridViewTextBoxColumn,
             this.kacntrDataGridViewTextBoxColumn});
             this.stick_dataGridView.DataSource = this.sTKTaxiTableBindingSource;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.stick_dataGridView.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.stick_dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.stick_dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.stick_dataGridView.Location = new System.Drawing.Point(0, 0);
             this.stick_dataGridView.Name = "stick_dataGridView";
             this.stick_dataGridView.ReadOnly = true;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.stick_dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.stick_dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.stick_dataGridView.RowHeadersVisible = false;
             this.stick_dataGridView.Size = new System.Drawing.Size(1240, 497);
             this.stick_dataGridView.TabIndex = 0;
@@ -4488,8 +4492,8 @@ namespace RT_Viewer
             // 
             this.gruIdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.gruIdDataGridViewTextBoxColumn.DataPropertyName = "gruId";
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.gruIdDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.gruIdDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.gruIdDataGridViewTextBoxColumn.FillWeight = 50F;
             this.gruIdDataGridViewTextBoxColumn.HeaderText = "GRU ID";
             this.gruIdDataGridViewTextBoxColumn.Name = "gruIdDataGridViewTextBoxColumn";
@@ -4738,10 +4742,14 @@ namespace RT_Viewer
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.Controls.Add(this.groupBox11);
+            this.groupBox1.Controls.Add(this.groupBox8);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.tlm_btn_reset_tlm);
             this.groupBox1.Controls.Add(this.groupBox9);
             this.groupBox1.Controls.Add(this.groupBox6);
             this.groupBox1.Controls.Add(this.groupBox3);
-            this.groupBox1.Controls.Add(this.tlm_btn_SaveConfigurations);
+            this.groupBox1.Controls.Add(this.tlm_btn_LoadConfigurations);
             this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Location = new System.Drawing.Point(8, 3);
@@ -4750,6 +4758,86 @@ namespace RT_Viewer
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Telemetric configuration";
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.label13);
+            this.groupBox11.Controls.Add(this.tlm_tbx_SavePath);
+            this.groupBox11.Location = new System.Drawing.Point(9, 324);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(326, 48);
+            this.groupBox11.TabIndex = 14;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Save output files";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 22);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(29, 13);
+            this.label13.TabIndex = 12;
+            this.label13.Text = "Path";
+            // 
+            // tlm_tbx_SavePath
+            // 
+            this.tlm_tbx_SavePath.BackColor = System.Drawing.SystemColors.Control;
+            this.tlm_tbx_SavePath.Location = new System.Drawing.Point(53, 19);
+            this.tlm_tbx_SavePath.Name = "tlm_tbx_SavePath";
+            this.tlm_tbx_SavePath.Size = new System.Drawing.Size(261, 20);
+            this.tlm_tbx_SavePath.TabIndex = 11;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.label22);
+            this.groupBox8.Controls.Add(this.tlm_lbl_status);
+            this.groupBox8.Location = new System.Drawing.Point(9, 526);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(326, 48);
+            this.groupBox8.TabIndex = 18;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Telemetric status";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label22.Location = new System.Drawing.Point(15, 24);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(65, 13);
+            this.label22.TabIndex = 1;
+            this.label22.Text = "TLM status |";
+            // 
+            // tlm_lbl_status
+            // 
+            this.tlm_lbl_status.AutoSize = true;
+            this.tlm_lbl_status.Location = new System.Drawing.Point(87, 24);
+            this.tlm_lbl_status.Name = "tlm_lbl_status";
+            this.tlm_lbl_status.Size = new System.Drawing.Size(10, 13);
+            this.tlm_lbl_status.TabIndex = 0;
+            this.tlm_lbl_status.Text = ".";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.Location = new System.Drawing.Point(18, 378);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(83, 35);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "Save configurations";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.tlm_btn_SaveConfigurations_Click);
+            // 
+            // tlm_btn_reset_tlm
+            // 
+            this.tlm_btn_reset_tlm.BackColor = System.Drawing.SystemColors.Control;
+            this.tlm_btn_reset_tlm.Location = new System.Drawing.Point(254, 378);
+            this.tlm_btn_reset_tlm.Name = "tlm_btn_reset_tlm";
+            this.tlm_btn_reset_tlm.Size = new System.Drawing.Size(75, 35);
+            this.tlm_btn_reset_tlm.TabIndex = 16;
+            this.tlm_btn_reset_tlm.Text = "Reset TLM";
+            this.tlm_btn_reset_tlm.UseVisualStyleBackColor = false;
+            this.tlm_btn_reset_tlm.Click += new System.EventHandler(this.tlm_btn_reset_tlm_Click);
             // 
             // groupBox9
             // 
@@ -4778,6 +4866,7 @@ namespace RT_Viewer
             this.tlm_tbx_PathConfigFiles.Name = "tlm_tbx_PathConfigFiles";
             this.tlm_tbx_PathConfigFiles.Size = new System.Drawing.Size(241, 20);
             this.tlm_tbx_PathConfigFiles.TabIndex = 12;
+            this.tlm_tbx_PathConfigFiles.Text = "C:\\Software_projects\\Elbit\\ElbitMalat\\Telemetric\\Config";
             // 
             // groupBox6
             // 
@@ -4824,7 +4913,7 @@ namespace RT_Viewer
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.tlm_rdb_SortLowHigh);
+            this.groupBox3.Controls.Add(this.tlm_rdb_SortIndex);
             this.groupBox3.Controls.Add(this.tlm_rdb_SortHighLow);
             this.groupBox3.Controls.Add(this.tlm_rdb_SortByGroups);
             this.groupBox3.Location = new System.Drawing.Point(9, 83);
@@ -4834,21 +4923,21 @@ namespace RT_Viewer
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Sort data mode";
             // 
-            // tlm_rdb_SortLowHigh
+            // tlm_rdb_SortIndex
             // 
-            this.tlm_rdb_SortLowHigh.AutoSize = true;
-            this.tlm_rdb_SortLowHigh.Location = new System.Drawing.Point(200, 24);
-            this.tlm_rdb_SortLowHigh.Name = "tlm_rdb_SortLowHigh";
-            this.tlm_rdb_SortLowHigh.Size = new System.Drawing.Size(80, 17);
-            this.tlm_rdb_SortLowHigh.TabIndex = 15;
-            this.tlm_rdb_SortLowHigh.TabStop = true;
-            this.tlm_rdb_SortLowHigh.Text = "Low to high";
-            this.tlm_rdb_SortLowHigh.UseVisualStyleBackColor = true;
+            this.tlm_rdb_SortIndex.AutoSize = true;
+            this.tlm_rdb_SortIndex.Location = new System.Drawing.Point(123, 24);
+            this.tlm_rdb_SortIndex.Name = "tlm_rdb_SortIndex";
+            this.tlm_rdb_SortIndex.Size = new System.Drawing.Size(51, 17);
+            this.tlm_rdb_SortIndex.TabIndex = 15;
+            this.tlm_rdb_SortIndex.TabStop = true;
+            this.tlm_rdb_SortIndex.Text = "Index";
+            this.tlm_rdb_SortIndex.UseVisualStyleBackColor = true;
             // 
             // tlm_rdb_SortHighLow
             // 
             this.tlm_rdb_SortHighLow.AutoSize = true;
-            this.tlm_rdb_SortHighLow.Location = new System.Drawing.Point(116, 24);
+            this.tlm_rdb_SortHighLow.Location = new System.Drawing.Point(207, 24);
             this.tlm_rdb_SortHighLow.Name = "tlm_rdb_SortHighLow";
             this.tlm_rdb_SortHighLow.Size = new System.Drawing.Size(78, 17);
             this.tlm_rdb_SortHighLow.TabIndex = 14;
@@ -4867,15 +4956,16 @@ namespace RT_Viewer
             this.tlm_rdb_SortByGroups.Text = "By groups";
             this.tlm_rdb_SortByGroups.UseVisualStyleBackColor = true;
             // 
-            // tlm_btn_SaveConfigurations
+            // tlm_btn_LoadConfigurations
             // 
-            this.tlm_btn_SaveConfigurations.BackColor = System.Drawing.SystemColors.Control;
-            this.tlm_btn_SaveConfigurations.Location = new System.Drawing.Point(108, 350);
-            this.tlm_btn_SaveConfigurations.Name = "tlm_btn_SaveConfigurations";
-            this.tlm_btn_SaveConfigurations.Size = new System.Drawing.Size(129, 27);
-            this.tlm_btn_SaveConfigurations.TabIndex = 14;
-            this.tlm_btn_SaveConfigurations.Text = "Save configurations";
-            this.tlm_btn_SaveConfigurations.UseVisualStyleBackColor = false;
+            this.tlm_btn_LoadConfigurations.BackColor = System.Drawing.SystemColors.Control;
+            this.tlm_btn_LoadConfigurations.Location = new System.Drawing.Point(132, 378);
+            this.tlm_btn_LoadConfigurations.Name = "tlm_btn_LoadConfigurations";
+            this.tlm_btn_LoadConfigurations.Size = new System.Drawing.Size(83, 35);
+            this.tlm_btn_LoadConfigurations.TabIndex = 14;
+            this.tlm_btn_LoadConfigurations.Text = "Load configurations";
+            this.tlm_btn_LoadConfigurations.UseVisualStyleBackColor = false;
+            this.tlm_btn_LoadConfigurations.Click += new System.EventHandler(this.tlm_btn_LoadConfigurations_Click);
             // 
             // groupBox4
             // 
@@ -4884,9 +4974,9 @@ namespace RT_Viewer
             this.groupBox4.Controls.Add(this.label21);
             this.groupBox4.Controls.Add(this.tlm_tbx_FindName);
             this.groupBox4.Controls.Add(this.label20);
-            this.groupBox4.Location = new System.Drawing.Point(0, 493);
+            this.groupBox4.Location = new System.Drawing.Point(9, 433);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(338, 87);
+            this.groupBox4.Size = new System.Drawing.Size(326, 87);
             this.groupBox4.TabIndex = 8;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Find data member";
@@ -4894,9 +4984,9 @@ namespace RT_Viewer
             // tlm_btn_FigureDataMember
             // 
             this.tlm_btn_FigureDataMember.BackColor = System.Drawing.SystemColors.Control;
-            this.tlm_btn_FigureDataMember.Location = new System.Drawing.Point(226, 39);
+            this.tlm_btn_FigureDataMember.Location = new System.Drawing.Point(243, 39);
             this.tlm_btn_FigureDataMember.Name = "tlm_btn_FigureDataMember";
-            this.tlm_btn_FigureDataMember.Size = new System.Drawing.Size(106, 27);
+            this.tlm_btn_FigureDataMember.Size = new System.Drawing.Size(71, 27);
             this.tlm_btn_FigureDataMember.TabIndex = 17;
             this.tlm_btn_FigureDataMember.Text = "Visual view";
             this.tlm_btn_FigureDataMember.UseVisualStyleBackColor = false;
@@ -4946,7 +5036,7 @@ namespace RT_Viewer
             this.groupBox2.Controls.Add(this.tlm_rdb_ReadSourceFlash);
             this.groupBox2.Location = new System.Drawing.Point(9, 205);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(326, 124);
+            this.groupBox2.Size = new System.Drawing.Size(326, 113);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Read Source";
@@ -4962,7 +5052,6 @@ namespace RT_Viewer
             this.tlm_rdb_ReadSourceFile.Text = "File";
             this.tlm_rdb_ReadSourceFile.UseVisualStyleBackColor = true;
             this.tlm_rdb_ReadSourceFile.CheckedChanged += new System.EventHandler(this.tlm_rdb_ReadSourceFile_CheckedChanged);
-            this.tlm_rdb_ReadSourceFile.Click += new System.EventHandler(this.tlm_rdb_ReadSourceFile_Click);
             // 
             // tlm_gbx_fileUpdate
             // 
@@ -5016,7 +5105,6 @@ namespace RT_Viewer
             this.tlm_rdb_ReadSourceCurrent.TabStop = true;
             this.tlm_rdb_ReadSourceCurrent.Text = "Current data";
             this.tlm_rdb_ReadSourceCurrent.UseVisualStyleBackColor = true;
-            this.tlm_rdb_ReadSourceCurrent.Click += new System.EventHandler(this.tlm_rdb_ReadSourceFile_Click);
             // 
             // tlm_rdb_ReadSourceFlash
             // 
@@ -5028,7 +5116,6 @@ namespace RT_Viewer
             this.tlm_rdb_ReadSourceFlash.TabStop = true;
             this.tlm_rdb_ReadSourceFlash.Text = "Flash";
             this.tlm_rdb_ReadSourceFlash.UseVisualStyleBackColor = true;
-            this.tlm_rdb_ReadSourceFlash.Click += new System.EventHandler(this.tlm_rdb_ReadSourceFile_Click);
             // 
             // tabControl1
             // 
@@ -5056,12 +5143,10 @@ namespace RT_Viewer
             // 
             this.groupBox7.Controls.Add(this.tlm_cbx_SaveBigTableType);
             this.groupBox7.Controls.Add(this.tlm_btn_SaveBigTableSelect);
-            this.groupBox7.Controls.Add(this.label24);
             this.groupBox7.Controls.Add(this.label25);
-            this.groupBox7.Controls.Add(this.tlm_tbx_SaveBigTablePath);
-            this.groupBox7.Location = new System.Drawing.Point(6, 484);
+            this.groupBox7.Location = new System.Drawing.Point(6, 510);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(282, 68);
+            this.groupBox7.Size = new System.Drawing.Size(379, 42);
             this.groupBox7.TabIndex = 12;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "File save configuration";
@@ -5074,7 +5159,7 @@ namespace RT_Viewer
             "Raw file",
             "Text file",
             "Both"});
-            this.tlm_cbx_SaveBigTableType.Location = new System.Drawing.Point(116, 15);
+            this.tlm_cbx_SaveBigTableType.Location = new System.Drawing.Point(194, 15);
             this.tlm_cbx_SaveBigTableType.Name = "tlm_cbx_SaveBigTableType";
             this.tlm_cbx_SaveBigTableType.Size = new System.Drawing.Size(89, 21);
             this.tlm_cbx_SaveBigTableType.TabIndex = 12;
@@ -5083,21 +5168,13 @@ namespace RT_Viewer
             // tlm_btn_SaveBigTableSelect
             // 
             this.tlm_btn_SaveBigTableSelect.BackColor = System.Drawing.SystemColors.Control;
-            this.tlm_btn_SaveBigTableSelect.Location = new System.Drawing.Point(220, 37);
+            this.tlm_btn_SaveBigTableSelect.Location = new System.Drawing.Point(295, 13);
             this.tlm_btn_SaveBigTableSelect.Name = "tlm_btn_SaveBigTableSelect";
-            this.tlm_btn_SaveBigTableSelect.Size = new System.Drawing.Size(56, 23);
+            this.tlm_btn_SaveBigTableSelect.Size = new System.Drawing.Size(72, 23);
             this.tlm_btn_SaveBigTableSelect.TabIndex = 9;
-            this.tlm_btn_SaveBigTableSelect.Text = "Save";
+            this.tlm_btn_SaveBigTableSelect.Text = "Save Table";
             this.tlm_btn_SaveBigTableSelect.UseVisualStyleBackColor = false;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(3, 42);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(29, 13);
-            this.label24.TabIndex = 11;
-            this.label24.Text = "Path";
+            this.tlm_btn_SaveBigTableSelect.Click += new System.EventHandler(this.tlm_btn_SaveResSelect_Click);
             // 
             // label25
             // 
@@ -5108,28 +5185,20 @@ namespace RT_Viewer
             this.label25.TabIndex = 2;
             this.label25.Text = "Output format";
             // 
-            // tlm_tbx_SaveBigTablePath
-            // 
-            this.tlm_tbx_SaveBigTablePath.BackColor = System.Drawing.SystemColors.Control;
-            this.tlm_tbx_SaveBigTablePath.Location = new System.Drawing.Point(39, 39);
-            this.tlm_tbx_SaveBigTablePath.Name = "tlm_tbx_SaveBigTablePath";
-            this.tlm_tbx_SaveBigTablePath.Size = new System.Drawing.Size(166, 20);
-            this.tlm_tbx_SaveBigTablePath.TabIndex = 10;
-            // 
             // tlmTable_dataGridView
             // 
             this.tlmTable_dataGridView.AutoGenerateColumns = false;
             this.tlmTable_dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.tlmTable_dataGridView.BackgroundColor = System.Drawing.SystemColors.Control;
             this.tlmTable_dataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tlmTable_dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tlmTable_dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.tlmTable_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tlmTable_dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
@@ -5144,6 +5213,55 @@ namespace RT_Viewer
             this.tlmTable_dataGridView.Name = "tlmTable_dataGridView";
             this.tlmTable_dataGridView.Size = new System.Drawing.Size(868, 447);
             this.tlmTable_dataGridView.TabIndex = 0;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 58;
+            // 
+            // groupDataGridViewTextBoxColumn
+            // 
+            this.groupDataGridViewTextBoxColumn.DataPropertyName = "group";
+            this.groupDataGridViewTextBoxColumn.HeaderText = "group";
+            this.groupDataGridViewTextBoxColumn.Name = "groupDataGridViewTextBoxColumn";
+            this.groupDataGridViewTextBoxColumn.Width = 59;
+            // 
+            // idxDataGridViewTextBoxColumn
+            // 
+            this.idxDataGridViewTextBoxColumn.DataPropertyName = "idx";
+            this.idxDataGridViewTextBoxColumn.HeaderText = "idx";
+            this.idxDataGridViewTextBoxColumn.Name = "idxDataGridViewTextBoxColumn";
+            this.idxDataGridViewTextBoxColumn.Width = 45;
+            // 
+            // Data_type
+            // 
+            this.Data_type.DataPropertyName = "Data_type";
+            this.Data_type.HeaderText = "Data_type";
+            this.Data_type.Name = "Data_type";
+            this.Data_type.Width = 81;
+            // 
+            // valueDataGridViewTextBoxColumn
+            // 
+            this.valueDataGridViewTextBoxColumn.DataPropertyName = "value";
+            this.valueDataGridViewTextBoxColumn.HeaderText = "value";
+            this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
+            this.valueDataGridViewTextBoxColumn.Width = 58;
+            // 
+            // rateDataGridViewTextBoxColumn
+            // 
+            this.rateDataGridViewTextBoxColumn.DataPropertyName = "rate";
+            this.rateDataGridViewTextBoxColumn.HeaderText = "rate";
+            this.rateDataGridViewTextBoxColumn.Name = "rateDataGridViewTextBoxColumn";
+            this.rateDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // Data_sign
+            // 
+            this.Data_sign.DataPropertyName = "Data_sign";
+            this.Data_sign.HeaderText = "Data_sign";
+            this.Data_sign.Name = "Data_sign";
+            this.Data_sign.Width = 80;
             // 
             // tlmTableBindingSource
             // 
@@ -5166,12 +5284,10 @@ namespace RT_Viewer
             // 
             this.groupBox5.Controls.Add(this.tlm_cbx_ViewerSaveType);
             this.groupBox5.Controls.Add(this.tlm_btn_ViewerSave);
-            this.groupBox5.Controls.Add(this.label13);
             this.groupBox5.Controls.Add(this.label15);
-            this.groupBox5.Controls.Add(this.tlm_btn_ViewerSavePath);
-            this.groupBox5.Location = new System.Drawing.Point(12, 484);
+            this.groupBox5.Location = new System.Drawing.Point(12, 504);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(282, 68);
+            this.groupBox5.Size = new System.Drawing.Size(306, 45);
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Results save";
@@ -5192,21 +5308,13 @@ namespace RT_Viewer
             // 
             // tlm_btn_ViewerSave
             // 
-            this.tlm_btn_ViewerSave.Location = new System.Drawing.Point(220, 37);
+            this.tlm_btn_ViewerSave.Location = new System.Drawing.Point(220, 13);
             this.tlm_btn_ViewerSave.Name = "tlm_btn_ViewerSave";
-            this.tlm_btn_ViewerSave.Size = new System.Drawing.Size(56, 23);
+            this.tlm_btn_ViewerSave.Size = new System.Drawing.Size(80, 23);
             this.tlm_btn_ViewerSave.TabIndex = 9;
-            this.tlm_btn_ViewerSave.Text = "Save";
+            this.tlm_btn_ViewerSave.Text = "Save view";
             this.tlm_btn_ViewerSave.UseVisualStyleBackColor = true;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 42);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(29, 13);
-            this.label13.TabIndex = 11;
-            this.label13.Text = "Path";
+            this.tlm_btn_ViewerSave.Click += new System.EventHandler(this.tlm_btn_SaveResSelect_Click);
             // 
             // label15
             // 
@@ -5217,19 +5325,9 @@ namespace RT_Viewer
             this.label15.TabIndex = 2;
             this.label15.Text = "What to save";
             // 
-            // tlm_btn_ViewerSavePath
-            // 
-            this.tlm_btn_ViewerSavePath.BackColor = System.Drawing.SystemColors.Control;
-            this.tlm_btn_ViewerSavePath.Location = new System.Drawing.Point(42, 39);
-            this.tlm_btn_ViewerSavePath.Name = "tlm_btn_ViewerSavePath";
-            this.tlm_btn_ViewerSavePath.Size = new System.Drawing.Size(163, 20);
-            this.tlm_btn_ViewerSavePath.TabIndex = 10;
-            // 
             // groupBox10
             // 
-            this.groupBox10.Controls.Add(this.label23);
-            this.groupBox10.Controls.Add(this.tlm_rtb_view_res_table_time);
-            this.groupBox10.Controls.Add(this.label17);
+            this.groupBox10.Controls.Add(this.label16);
             this.groupBox10.Controls.Add(this.tlm_rtb_view_res_table_value);
             this.groupBox10.Location = new System.Drawing.Point(620, 22);
             this.groupBox10.Name = "groupBox10";
@@ -5238,39 +5336,21 @@ namespace RT_Viewer
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "table";
             // 
-            // label23
+            // label16
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(145, 20);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(97, 13);
-            this.label23.TabIndex = 3;
-            this.label23.Text = "Time stamp [mSec]";
-            // 
-            // tlm_rtb_view_res_table_time
-            // 
-            this.tlm_rtb_view_res_table_time.BackColor = System.Drawing.SystemColors.Control;
-            this.tlm_rtb_view_res_table_time.Location = new System.Drawing.Point(148, 36);
-            this.tlm_rtb_view_res_table_time.Name = "tlm_rtb_view_res_table_time";
-            this.tlm_rtb_view_res_table_time.Size = new System.Drawing.Size(104, 356);
-            this.tlm_rtb_view_res_table_time.TabIndex = 2;
-            this.tlm_rtb_view_res_table_time.Text = "";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(16, 20);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(34, 13);
-            this.label17.TabIndex = 1;
-            this.label17.Text = "Value";
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(170, 20);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(62, 13);
+            this.label16.TabIndex = 1;
+            this.label16.Text = "time [mSec]";
             // 
             // tlm_rtb_view_res_table_value
             // 
             this.tlm_rtb_view_res_table_value.BackColor = System.Drawing.SystemColors.Control;
             this.tlm_rtb_view_res_table_value.Location = new System.Drawing.Point(19, 36);
             this.tlm_rtb_view_res_table_value.Name = "tlm_rtb_view_res_table_value";
-            this.tlm_rtb_view_res_table_value.Size = new System.Drawing.Size(104, 356);
+            this.tlm_rtb_view_res_table_value.Size = new System.Drawing.Size(213, 356);
             this.tlm_rtb_view_res_table_value.TabIndex = 0;
             this.tlm_rtb_view_res_table_value.Text = "";
             // 
@@ -5288,20 +5368,20 @@ namespace RT_Viewer
             // 
             this.tlm_chart_view.BackColor = System.Drawing.SystemColors.Control;
             this.tlm_chart_view.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea2.Name = "ChartArea1";
-            this.tlm_chart_view.ChartAreas.Add(chartArea2);
-            legend2.DockedToChartArea = "ChartArea1";
-            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend2.Name = "Legend1";
-            this.tlm_chart_view.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.tlm_chart_view.ChartAreas.Add(chartArea1);
+            legend1.DockedToChartArea = "ChartArea1";
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend1.Name = "Legend1";
+            this.tlm_chart_view.Legends.Add(legend1);
             this.tlm_chart_view.Location = new System.Drawing.Point(6, 36);
             this.tlm_chart_view.Name = "tlm_chart_view";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.IsValueShownAsLabel = true;
-            series2.Legend = "Legend1";
-            series2.Name = "Main line";
-            this.tlm_chart_view.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsValueShownAsLabel = true;
+            series1.Legend = "Legend1";
+            series1.Name = "Main line";
+            this.tlm_chart_view.Series.Add(series1);
             this.tlm_chart_view.Size = new System.Drawing.Size(602, 415);
             this.tlm_chart_view.TabIndex = 0;
             this.tlm_chart_view.Text = "chart1";
@@ -5529,34 +5609,34 @@ namespace RT_Viewer
             this.offlineParam_dataGridView.AllowUserToAddRows = false;
             this.offlineParam_dataGridView.AllowUserToDeleteRows = false;
             this.offlineParam_dataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.offlineParam_dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.offlineParam_dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.offlineParam_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.offlineParam_dataGridView.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.offlineParam_dataGridView.DefaultCellStyle = dataGridViewCellStyle7;
             this.offlineParam_dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.offlineParam_dataGridView.Location = new System.Drawing.Point(0, 0);
             this.offlineParam_dataGridView.Name = "offlineParam_dataGridView";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.offlineParam_dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.offlineParam_dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.offlineParam_dataGridView.RowHeadersVisible = false;
             this.offlineParam_dataGridView.Size = new System.Drawing.Size(765, 529);
             this.offlineParam_dataGridView.TabIndex = 0;
@@ -5765,7 +5845,7 @@ namespace RT_Viewer
             this.menuToolStripMenuItem});
             this.menu_menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menu_menuStrip.Name = "menu_menuStrip";
-            this.menu_menuStrip.Size = new System.Drawing.Size(1317, 24);
+            this.menu_menuStrip.Size = new System.Drawing.Size(1334, 24);
             this.menu_menuStrip.TabIndex = 15;
             this.menu_menuStrip.Text = "menuStrip1";
             this.menu_menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -5830,62 +5910,13 @@ namespace RT_Viewer
             // 
             this.dNLTableBindingSource4.DataSource = typeof(RT_Viewer.Framework.UAVModule.DNLTable);
             // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Width = 58;
-            // 
-            // groupDataGridViewTextBoxColumn
-            // 
-            this.groupDataGridViewTextBoxColumn.DataPropertyName = "group";
-            this.groupDataGridViewTextBoxColumn.HeaderText = "group";
-            this.groupDataGridViewTextBoxColumn.Name = "groupDataGridViewTextBoxColumn";
-            this.groupDataGridViewTextBoxColumn.Width = 59;
-            // 
-            // idxDataGridViewTextBoxColumn
-            // 
-            this.idxDataGridViewTextBoxColumn.DataPropertyName = "idx";
-            this.idxDataGridViewTextBoxColumn.HeaderText = "idx";
-            this.idxDataGridViewTextBoxColumn.Name = "idxDataGridViewTextBoxColumn";
-            this.idxDataGridViewTextBoxColumn.Width = 45;
-            // 
-            // Data_type
-            // 
-            this.Data_type.DataPropertyName = "Data_type";
-            this.Data_type.HeaderText = "Data_type";
-            this.Data_type.Name = "Data_type";
-            this.Data_type.Width = 81;
-            // 
-            // valueDataGridViewTextBoxColumn
-            // 
-            this.valueDataGridViewTextBoxColumn.DataPropertyName = "value";
-            this.valueDataGridViewTextBoxColumn.HeaderText = "value";
-            this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
-            this.valueDataGridViewTextBoxColumn.Width = 58;
-            // 
-            // rateDataGridViewTextBoxColumn
-            // 
-            this.rateDataGridViewTextBoxColumn.DataPropertyName = "rate";
-            this.rateDataGridViewTextBoxColumn.HeaderText = "rate";
-            this.rateDataGridViewTextBoxColumn.Name = "rateDataGridViewTextBoxColumn";
-            this.rateDataGridViewTextBoxColumn.Width = 50;
-            // 
-            // Data_sign
-            // 
-            this.Data_sign.DataPropertyName = "Data_sign";
-            this.Data_sign.HeaderText = "Data_sign";
-            this.Data_sign.Name = "Data_sign";
-            this.Data_sign.Width = 80;
-            // 
             // RTViewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1334, 701);
+            this.ClientSize = new System.Drawing.Size(1351, 701);
             this.Controls.Add(this.rtMainStatus_panel);
             this.Controls.Add(this.application_tabControl);
             this.Controls.Add(this.cleanScreen_button);
@@ -6048,6 +6079,10 @@ namespace RT_Viewer
             this.gdt_tabPage.ResumeLayout(false);
             this.tlm_tabPage.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.groupBox6.ResumeLayout(false);
@@ -6603,10 +6638,9 @@ namespace RT_Viewer
         private RadioButton tlm_rdb_ReadSourceFile;
         private GroupBox groupBox6;
         private OpenFileDialog Tlm_openFileDialog;
-        private Button tlm_btn_SaveConfigurations;
+        private Button tlm_btn_LoadConfigurations;
         private RadioButton tlm_rdb_DataTypeOrginal;
         private RadioButton tlm_rdb_DataTypeChars;
-        private RadioButton tlm_rdb_SortLowHigh;
         private RadioButton tlm_rdb_SortHighLow;
         private RadioButton tlm_rdb_SortByGroups;
         private Button tlm_btn_ForceUpdate;
@@ -6623,21 +6657,14 @@ namespace RT_Viewer
         private TextBox tlm_tbx_PathConfigFiles;
         private GroupBox groupBox10;
         private RichTextBox tlm_rtb_view_res_table_value;
-        private Label label23;
-        private RichTextBox tlm_rtb_view_res_table_time;
-        private Label label17;
         private GroupBox groupBox7;
         private Button tlm_btn_SaveBigTableSelect;
-        private Label label24;
         private Label label25;
-        private TextBox tlm_tbx_SaveBigTablePath;
         private ComboBox tlm_cbx_SaveBigTableType;
         private GroupBox groupBox5;
         private ComboBox tlm_cbx_ViewerSaveType;
         private Button tlm_btn_ViewerSave;
-        private Label label13;
         private Label label15;
-        private TextBox tlm_btn_ViewerSavePath;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn groupDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn idxDataGridViewTextBoxColumn;
@@ -6645,6 +6672,16 @@ namespace RT_Viewer
         private DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn rateDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn Data_sign;
+        private RadioButton tlm_rdb_SortIndex;
+        private Button tlm_btn_reset_tlm;
+        private Button button1;
+        private GroupBox groupBox8;
+        private Label label22;
+        private Label tlm_lbl_status;
+        private Label label16;
+        private GroupBox groupBox11;
+        private Label label13;
+        private TextBox tlm_tbx_SavePath;
     }
 }
 

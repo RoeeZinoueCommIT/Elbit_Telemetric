@@ -1,0 +1,15 @@
+/* 
+* This file is generated automaticly - Don`t edit.
+* File version: 1_001
+* Format: Name: Index: Group:
+*/
+
+
+* %%%%%%% PFD GROUP %%%%%%%%
+PFD_TEST_1 : 1 : 0
+PFD_TEST_2 : 1 : 1
+PFD_TEST_3 : 1 : 2
+
+* %%%%%%% HKY GROUP %%%%%%%%
+HKY_TEST_1 : 0 : 0
+HKY_TEST_2 : 0 : 0

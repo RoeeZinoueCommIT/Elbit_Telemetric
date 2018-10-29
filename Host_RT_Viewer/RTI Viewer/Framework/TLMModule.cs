@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.IO;
 using System.ComponentModel;
 using System.Data;
+using System.Windows.Forms;
 
 namespace RT_Viewer.Framework
 {
@@ -27,13 +28,14 @@ namespace RT_Viewer.Framework
                 TLM_OPT_READ_SOURCE_FILE,
 
                 /* Save file */
-                TLM_OPT_SAVE_FILE_NO,
-                TLM_OPT_SAVE_FILE_YES,
+                TLM_OPT_SAVE_FILE_RAW,
+                TLM_OPT_SAVE_FILE_VISUAL,
+                TLM_OPT_SAVE_FILE_TEXT,
 
                 /* SORT TYPE */
                 TLM_OPT_SORT_GROUPS,
                 TLM_OPT_SORT_HIGH_LOW,
-                TLM_OPT_SORT_LOW_HIGH,
+                TLM_OPT_SORT_INDEX,
 
                 /* Data type */
                 TLM_OPT_DATA_TYPE_CHARS,
@@ -115,6 +117,7 @@ namespace RT_Viewer.Framework
         {
             TLM_OPT_IDX_READ_SOURCE_IDX = 0,
             TLM_OPT_IDX_SAVE_FILE_IDX,
+            TLM_OPT_IDX_CONF_PATH,
             TLM_OPT_IDX_SORT_MODE_IDX,
             TLM_OPT_IDX_DATA_TYPE_IDX,
         };
@@ -125,7 +128,9 @@ namespace RT_Viewer.Framework
             TLM_RATE_NORMAL = 2,    /* 2 * 100 mSec rate = 200 msec*/
             TLM_RATE_SLOW   = 3     /* 3 * 100 mSec rate = 300 msec*/
         };
-        
+
+
+
         #endregion
 
         #region TLM data tables
@@ -142,6 +147,19 @@ namespace RT_Viewer.Framework
             public UInt32 param_key { get; set; }
         }
 
+        public class TLMOptions
+        {
+            
+            public TLMModuleOptions.enumTLM_opt read_source { get; internal set; }
+            public TLMModuleOptions.enumTLM_opt sort_mode { get; internal set; }
+            public TLMModuleOptions.enumTLM_opt data_type { get; internal set; }
+            public TLMModuleOptions.enumTLM_opt Save_format { get; internal set; }
+            public string conf_path { get; internal set; }
+            public string file_read_path { get; internal set; }
+            public string save_out_path { get; internal set; }
+            
+        }
+
         public class TLMNamesTable
         {
             public string name { get; set; }
@@ -152,21 +170,25 @@ namespace RT_Viewer.Framework
 
         #region Verbs
 
-        List<TLMModuleOptions.enumTLM_opt> _tlmOptions;
         string _readFileSourcePath = string.Empty;
         string _storeRawFilesPath = string.Empty;
         private readonly Int16 C_TLM_MAX_PACKET_SIZE_BYTES = 20;
         int C_TLM_HEADER_NUM_BYTES = 2;
+        
 
         /* Binding source */
-        public BindingList<TLMDataTable> BL_TLMDataTable;
 
-        List<TLMDataTable> _tlm_db;
+        public TLMOptions g_TLM_conf;
+        public List<TLMDataTable> g_TLM_db;
         List<TLMNamesTable> _tlm_db_names;
+        
+        private bool _first_round_flag = true;
+        private string C_TLM_CONF_FILE_EXTENSION = @"\conf1.text";
 
         public List<double> tlm_x_chart { get; set; }
         public List<double> tlm_y_chart { get; set; }
-
+        public List<string> tlm_view_table { get; set; }
+        public string[] g_TLM_ret_conf { get; set; }
         public List<string> tlm_group_list { get; set; }
 
 
@@ -177,23 +199,24 @@ namespace RT_Viewer.Framework
         public TLMModule(SocketHandler.enumDevice_id deviceID)
         {
             deviceIdConnected = deviceID;
-            _tlmOptions = new List<TLMModuleOptions.enumTLM_opt>
-            {
-                TLMModuleOptions.enumTLM_opt.TLM_OPT_NOT_SELECTED,
-                TLMModuleOptions.enumTLM_opt.TLM_OPT_NOT_SELECTED,
-                TLMModuleOptions.enumTLM_opt.TLM_OPT_NOT_SELECTED,
-                TLMModuleOptions.enumTLM_opt.TLM_OPT_NOT_SELECTED,
-                TLMModuleOptions.enumTLM_opt.TLM_OPT_NOT_SELECTED
-            };
+
 
             /* Init module TLM lists */
-            BL_TLMDataTable = new BindingList<TLMDataTable>();
-            _tlm_db = new List<TLMDataTable>();
-
+            g_TLM_db = new List<TLMDataTable>();
             tlm_x_chart = new List<double>();
             tlm_y_chart = new List<double>();
-
+            tlm_view_table = new List<string>();
             tlm_group_list = new List<string>();
+            g_TLM_conf = new TLMOptions();
+
+            g_TLM_ret_conf = new string[6];
+            g_TLM_conf.conf_path = string.Empty;
+            read_config_files();
+        }
+
+        private void read_config_files()
+        {
+            //if(g_TLM_conf.conf_path == string.Empty)
         }
 
         #endregion
@@ -202,65 +225,117 @@ namespace RT_Viewer.Framework
 
         #region Set TLM module configuration
 
-        internal void SetTlmOptions
-        (
-            TLMModuleOptions.enumTLM_opt read_source,
-            string read_source_file_path,
-            TLMModuleOptions.enumTLM_opt sort_mode,
-            TLMModuleOptions.enumTLM_opt data_type
-        )
+        internal void SetTlmOptions()
         {
+            SetTlmMembersName();
+            SaveConfigToFile();
+        }
 
-            _tlmOptions[(Int16)enumTLM_opt_idx.TLM_OPT_IDX_READ_SOURCE_IDX] = read_source;
-            if (read_source == TLMModuleOptions.enumTLM_opt.TLM_OPT_READ_SOURCE_FILE)
+        private void SaveConfigToFile()
+        {
+            string conf_path = g_TLM_conf.conf_path + C_TLM_CONF_FILE_EXTENSION;
+            if (g_TLM_conf.conf_path != string.Empty)
             {
-                _readFileSourcePath = read_source_file_path == string.Empty ? string.Empty : _readFileSourcePath;
+                /*  Create file if don`t exist */
+                if (false == File.Exists(conf_path))
+                {
+                    File.Create(conf_path);
+                }
+
+                using (StreamWriter writer = new StreamWriter(conf_path))
+                {
+                    writer.WriteLine(g_TLM_conf.conf_path);
+                    writer.WriteLine(g_TLM_conf.data_type);
+                    writer.WriteLine(g_TLM_conf.read_source);
+                    writer.WriteLine(g_TLM_conf.sort_mode);
+                    if(g_TLM_conf.file_read_path != null)
+                    {
+                        writer.WriteLine(g_TLM_conf.file_read_path);
+                    }
+
+                    if (g_TLM_conf.save_out_path != null)
+                    {
+                        writer.WriteLine(g_TLM_conf.save_out_path);
+                    }
+
+                }
             }
+        }
 
-            _tlmOptions[(Int16)enumTLM_opt_idx.TLM_OPT_IDX_SORT_MODE_IDX] = sort_mode;
-
-            _tlmOptions[(Int16)enumTLM_opt_idx.TLM_OPT_IDX_DATA_TYPE_IDX] = data_type;
+        private void SetTlmMembersName()
+        {
+            int a = 0x7;
         }
 
         #endregion
 
         #region Find data member
 
-        internal Int32 SelectDataMember(string xi_find_name, string xi_find_group)
+        internal string SelectDataMember(string xi_find_name, string xi_find_group)
         {
             UInt16 MAX_ALLOWED_PARAMS_IN_GROUP = 5; /* Need to be part of the header */
             UInt16 param_index = 0x0;
 
-            Int32 ret_code = 0x0;
+            Int32 calc_key = 0x0;
+            string ret_val = string.Empty;
 
             if(xi_find_name != string.Empty)
             {
                 /* check if name is param index */
                 if (true == xi_find_name.All(char.IsDigit)) param_index = Convert.ToUInt16(xi_find_name);
 
-                ret_code = (UInt16)(tlm_fromStringToEnumVal(xi_find_group) * MAX_ALLOWED_PARAMS_IN_GROUP + param_index);
+                calc_key = (UInt16)(tlm_fromStringToEnumVal(xi_find_group) * MAX_ALLOWED_PARAMS_IN_GROUP + param_index);
+
+                /* Update telemetric chart with this found key */ 
+                ret_val = UpdateChartLists(calc_key);
             }
             else
             {
-                ret_code = -1;
+                ret_val = string.Empty;
             }
             
             /* Return data table */
-            return (ret_code);
+            return (ret_val);
         }
 
-        private ushort tlm_fromStringToEnumVal(string xi_find_group)
+        internal string UpdateChartLists(Int32 mem_key)
         {
-            UInt16 cnt = 0x0;
+            UInt16 MAX_ALLOWED_PARAMS_IN_GROUP = 5; /* Need to be part of the header */
 
-            foreach (var mc in Enum.GetNames(typeof(enumTLM_group_type)))
+            tlm_x_chart.Clear();
+            tlm_y_chart.Clear();
+
+            double t_count = 0x0;
+            string legenet_text = string.Empty;
+
+            foreach (var member in g_TLM_db)
             {
-                if (mc == xi_find_group) break;
-                cnt++;
-            }
+                if (member.param_key == mem_key)
+                {
+                    if (member.rate == "FAST")
+                    {
+                        t_count += 0.3;
+                    }
+                    else if (member.rate == "NORMAL")
+                    {
+                        t_count += 0.2;
+                    }
+                    else if (member.rate == "SLOW")
+                    {
+                        t_count += 0.1;
+                    }
 
-            return (cnt);
+                    tlm_x_chart.Add(t_count * 1000);
+                    tlm_y_chart.Add(Convert.ToDouble(member.value));
+                    tlm_view_table.Add(string.Format("value: {0} \tTime: {1}", member.value, (t_count * 1000).ToString()));
+                    legenet_text = string.Format("legend: group: {0} param index: {1}", member.group, member.idx);
+                }
+            }
+            return (legenet_text);
+
         }
+
+        
 
         #endregion
 
@@ -269,18 +344,47 @@ namespace RT_Viewer.Framework
         public override bool update(byte[] msg, uint size, uint type, uint source)
         {
             TlmUpdateTable(msg, size, type, source);
-            TlmStoreData(msg, size, type, source);
+            if (g_TLM_conf.Save_format == TLMModuleOptions.enumTLM_opt.TLM_OPT_SAVE_FILE_RAW)
+            {
+                TlmStoreData(msg);
+            }
 
-
-            //BL_TLMDataTable.Clear();
-            BL_TLMDataTable = new BindingList<TLMDataTable>(_tlm_db);
-            
             DoInvoke(new IModuleEventArgs(this.deviceIdConnected));
             return true;
         }
 
-        private void TlmUpdateTable(byte[] msg, uint size, uint type, uint source)
+        private void TlmStoreData(byte[] msg)
         {
+            string file_path = string.Format(@"{0}\{1}_", g_TLM_conf.save_out_path, DateTime.Now.ToString().Replace('/', '_').Replace(':', '_'));
+
+            switch (g_TLM_conf.Save_format)
+            {
+                case TLMModuleOptions.enumTLM_opt.TLM_OPT_SAVE_FILE_RAW:
+                    file_path += "raw.text"; 
+                    break;
+
+                case TLMModuleOptions.enumTLM_opt.TLM_OPT_SAVE_FILE_TEXT:
+                    file_path += "raw.text";
+                    break;
+
+                default:
+                    return;
+            }
+
+            using (Stream file = File.OpenWrite(file_path))
+            {
+                file.Write(msg, 0, msg.Length);
+            }
+        }
+
+        public void TlmUpdateTable(byte[] msg, uint size, uint type, uint source)
+        {
+            if (_first_round_flag == true)
+            {
+                g_TLM_db.Clear();
+                _first_round_flag = false;
+            }
+            
             Int32 read_bytes = 0x0;
             UInt32 num_params = 0x0;
 
@@ -311,9 +415,29 @@ namespace RT_Viewer.Framework
             }
 
             /* Sort TLM DB table if needed */
-            if(_tlmOptions[(Int16)enumTLM_opt_idx.TLM_OPT_IDX_SORT_MODE_IDX] == TLMModuleOptions.enumTLM_opt.TLM_OPT_SORT_HIGH_LOW)
+            if (g_TLM_conf.sort_mode == TLMModuleOptions.enumTLM_opt.TLM_OPT_SORT_GROUPS)
             {
-                var newlist = _tlm_db.OrderBy(x => x.group);
+                g_TLM_db.Sort((x, y) => x.group.CompareTo(y.group));
+            }
+            else if (g_TLM_conf.sort_mode == TLMModuleOptions.enumTLM_opt.TLM_OPT_SORT_INDEX)
+            {
+                g_TLM_db.Sort((x, y) => x.idx.CompareTo(y.idx));
+            }
+            else if (g_TLM_conf.sort_mode == TLMModuleOptions.enumTLM_opt.TLM_OPT_SORT_HIGH_LOW)
+            {
+                g_TLM_db.Sort((x, y) => x.value.CompareTo(y.value));
+            }
+
+            /* Display packet value by bytes */
+            if (g_TLM_conf.data_type == TLMModuleOptions.enumTLM_opt.TLM_OPT_DATA_TYPE_CHARS)
+            {
+                foreach (var member in g_TLM_db)
+                {
+                    //if(member.Data_type == "INT32" || member.Data_type == "INT64")
+                    //{
+                    //    member.value = BitConverter.ToString(BitConverter.GetBytes(Convert.ToInt32(member.value))).Replace("-", "");
+                    //}
+                }
             }
         }
 
@@ -357,6 +481,7 @@ namespace RT_Viewer.Framework
 
         private void InsertNewLinkToDataList(byte[] xi_flags, byte[] xi_data, UInt16 xi_data_size)
         {
+            bool exist_param = false;
             UInt16 MAX_ALLOWED_PARAMS_IN_GROUP = 5; /* Need to be part of the header */
 
             string temp_group_str = string.Empty;
@@ -390,13 +515,28 @@ namespace RT_Viewer.Framework
                     param_key = (UInt16)(temp_group_int * MAX_ALLOWED_PARAMS_IN_GROUP + temp_param_idx)
                 };
 
-                _tlm_db.Add(_node);
-
-                /* Update groups names list */
-                if (tlm_group_list.FindIndex(s => s.Contains(temp_group_str)) < 0)
+                foreach (var item in g_TLM_db)
                 {
-                    tlm_group_list.Add(temp_group_str);
+                    if(item.param_key == _node.param_key)
+                    {
+                        if(item.value == _node.value)
+                        {
+                            exist_param = true;
+                            break;
+                        }
+                    }
                 }
+                if(exist_param == false)
+                {
+                    g_TLM_db.Add(_node);
+
+                    /* Update groups names list */
+                    if (tlm_group_list.FindIndex(s => s.Contains(temp_group_str)) < 0)
+                    {
+                        tlm_group_list.Add(temp_group_str);
+                    }
+                }
+                
             }
             catch (Exception)
             {
@@ -411,39 +551,7 @@ namespace RT_Viewer.Framework
         private void TlmStoreData(byte[] msg, uint size, uint type, uint source)
         {
             byte[] data = new byte[C_TLM_MAX_PACKET_SIZE_BYTES];
-
-            if (_tlmOptions[(Int16)enumTLM_opt_idx.TLM_OPT_IDX_READ_SOURCE_IDX] != TLMModuleOptions.enumTLM_opt.TLM_OPT_NOT_SELECTED)
-            {
-                switch (_tlmOptions[(Int16)enumTLM_opt_idx.TLM_OPT_IDX_READ_SOURCE_IDX])
-                {
-                    case TLMModuleOptions.enumTLM_opt.TLM_OPT_READ_SOURCE_FILE:
-                        Buffer.BlockCopy(ReadRawFromFile(_readFileSourcePath), 0, data, 0, C_TLM_MAX_PACKET_SIZE_BYTES);
-                        break;
-
-                    case TLMModuleOptions.enumTLM_opt.TLM_OPT_READ_SOURCE_FLASH:
-                        /* Pass command to RTC that we want to read TLM from flash - This will ready at next round */
-
-                        Buffer.BlockCopy(msg, 0, data, 0, (int)size);
-                        break;
-
-                    case TLMModuleOptions.enumTLM_opt.TLM_OPT_READ_SOURCE_CURRENT:
-                        /* Pass command to RTC that we want to read TLM Current data */
-
-                        Buffer.BlockCopy(msg, 0, data, 0, (int)size);
-                        break;
-
-                    default:
-
-                        break;
-                }
-
-                /* Save raw data to file */
-                if (_tlmOptions[(Int16)enumTLM_opt_idx.TLM_OPT_IDX_SAVE_FILE_IDX] == TLMModuleOptions.enumTLM_opt.TLM_OPT_SAVE_FILE_YES)
-                {
-                    WriteTlmDataToFile(_storeRawFilesPath, data, size);
-                }
-            }
-
+            
         }
 
         private Array ReadRawFromFile(string readFileSourcePath)
@@ -495,37 +603,35 @@ namespace RT_Viewer.Framework
             return (res_data);
         }
 
+        private ushort tlm_fromStringToEnumVal(string xi_find_group)
+        {
+            UInt16 cnt = 0x0;
+
+            foreach (var mc in Enum.GetNames(typeof(enumTLM_group_type)))
+            {
+                if (mc == xi_find_group) break;
+                cnt++;
+            }
+
+            return (cnt);
+        }
         #endregion
 
-        internal void UpdateChartLists(Int32 mem_key)
+
+
+        internal void ResetCommand()
         {
-            UInt16 MAX_ALLOWED_PARAMS_IN_GROUP = 5; /* Need to be part of the header */
+            _first_round_flag = true;
+        }
 
-            tlm_x_chart.Clear();
-            tlm_y_chart.Clear();
+        internal void LoadList(string text)
+        {
+            string config_path = g_TLM_conf.conf_path != string.Empty ? g_TLM_conf.conf_path : text;
+            config_path += C_TLM_CONF_FILE_EXTENSION;
 
-            double count_t = 0.1;
-            double t_count = 0x0;
-            foreach (var member in _tlm_db)
+            if (config_path != string.Empty)
             {
-                if (member.param_key == mem_key)
-                {
-                    if(member.rate == "FAST")
-                    {
-                        t_count += 0.3;
-                    }
-                    else if (member.rate == "NORMAL")
-                    {
-                        t_count += 0.2;
-                    }
-                    else if (member.rate == "SLOW")
-                    {
-                        t_count += 0.1;
-                    }
-
-                    tlm_x_chart.Add(t_count * 1000);
-                    tlm_y_chart.Add(Convert.ToDouble(member.value));
-                }
+                g_TLM_ret_conf = System.IO.File.ReadAllLines(config_path);
             }
         }
     }
