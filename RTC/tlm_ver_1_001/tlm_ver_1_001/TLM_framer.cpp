@@ -66,9 +66,6 @@ void p_TLM_framer_init(void)
 	memset(g_TLM_db.tlm_current_data, 0, sizeof(g_TLM_db.tlm_current_data));
 	memset(g_TLM_db.tlm_info, 0, sizeof(g_TLM_db.tlm_info));
 
-	/* Initialize TLM data base */
-	p_TLM_hky_db_init();
-	p_TLM_pfd_db_init();
 
 	/* Initialize Flash counter */
 	g_TLM_flash_address_write_counter = C_TLM_FLASH_START_ADDRESS_WRITE;
